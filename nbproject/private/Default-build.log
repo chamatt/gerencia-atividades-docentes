@@ -1,0 +1,2 @@
+c++ -std=c++11 -pedantic-errors -Wall -Wextra -Werror -Iinclude/ -o build/objects/src/Main.o -c src/Main.cpp
+c++ -std=c++11 -pedantic-errors -Wall -Wextra -Werror -Iinclude/ -L/usr/lib -lstdc++ -lm -o ./build/apps/program ./build/objects/src/Main.o
