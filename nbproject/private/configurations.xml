@@ -11,6 +11,10 @@
         </df>
       </df>
       <df name="src">
+        <df name="utilitarios">
+          <in>Arquivos.cpp</in>
+          <in>Arquivos.h</in>
+        </df>
         <in>Main.cpp</in>
       </df>
     </df>
