@@ -22,6 +22,17 @@ namespace dominio
 
         public:
             Docente(int codigo, string nome, string departamento);
+            string getNome();
+            string getDepartamento();
+            int getCodigo();
+            int getTotalHorasSemanaisAula();
+            getTotalAulasSemestraisAula();
+            getTotalAulasSemanaisOrientacao();
+            getNumProducoesQualificadas();
+            getNumProducoesNaoQualificadas();
+            
+            
+            
             
         
     };
