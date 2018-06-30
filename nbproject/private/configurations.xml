@@ -11,9 +11,20 @@
         </df>
       </df>
       <df name="src">
+        <in>Docente.h</in>
         <in>Main.cpp</in>
       </df>
     </df>
+    <itemPath>../../Downloads/cpp-utils-master/util/DateUtils.cpp</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/DateUtils.h</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/NumPunctPTBR.cpp</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/NumPunctPTBR.h</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/NumberUtils.cpp</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/NumberUtils.h</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/StringUtils.cpp</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/StringUtils.h</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/Tokenizer.cpp</itemPath>
+    <itemPath>../../Downloads/cpp-utils-master/util/Tokenizer.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
