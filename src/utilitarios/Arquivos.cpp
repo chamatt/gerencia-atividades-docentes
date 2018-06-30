@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * string:   Arquivos.cpp
- * Author: mathe
- * 
- * Created on 30 de Junho de 2018, 19:07
- */
 #include <string>
 #include "Arquivos.h"
 using namespace std;
@@ -58,39 +46,39 @@ namespace utilitarios {
 
 
 
-    string Arquivos::GetDocentes() {
+    string Arquivos::getDocentes() {
             return docentes;
     }
 
-    string Arquivos::GetDiscentes() {
+    string Arquivos::getDiscentes() {
             return discentes;
     }
 
-    string Arquivos::GetProducaoCientifica() {
+    string Arquivos::getProducaoCientifica() {
             return producaoCientifica;
     }
 
-    string Arquivos::GetCursos() {
+    string Arquivos::getCursos() {
             return cursos;
     }
 
-    string Arquivos::GetDidaticoAulas() {
+    string Arquivos::getDidaticoAulas() {
             return didaticoAulas;
     }
 
-    string Arquivos::GetOrientacaoGraducao() {
+    string Arquivos::getOrientacaoGraducao() {
             return orientacaoGraducao;
     }
 
-    string Arquivos::GetOrientacaoPos() {
+    string Arquivos::getOrientacaoPos() {
             return orientacaoPos;
     }
 
-    bool Arquivos::IsWriteOnly() {
+    bool Arquivos::isWriteOnly() {
             return writeOnly;
     }
 
-    bool Arquivos::IsReadOnly() {
+    bool Arquivos::isReadOnly() {
             return readOnly;
     }
 

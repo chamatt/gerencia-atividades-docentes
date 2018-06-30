@@ -26,7 +26,7 @@ string& rtrim(string &s);
 
 string& trim(string& s);
 
-bool stringCompare(string s1, string s2);
+int stringCompare(string s1, string s2);
 
 bool isNumber(string& s);
 
