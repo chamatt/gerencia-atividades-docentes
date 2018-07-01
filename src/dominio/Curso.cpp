@@ -24,7 +24,7 @@ namespace dominio
     {
         return graduacao;
     }
-    vector<Docente> Curso::getListaDocentes() 
+    vector<Docente*> Curso::getListaDocentes() 
     {
         return docentes;
     }

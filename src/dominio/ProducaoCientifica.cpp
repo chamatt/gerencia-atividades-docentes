@@ -18,6 +18,9 @@ namespace dominio
         return qualificada;
     }
 
+    Docente* ProducaoCientifica::getDocente(){
+        return docente;
+    }
 
 
 }

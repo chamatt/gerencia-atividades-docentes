@@ -2,25 +2,25 @@
 #define CURSO_H
 #include <string>
 #include <vector>
-#include "Docente.h"
 
 using namespace std;
 
 namespace dominio
 {
+    class docente;
     class Curso 
     {
         string nome;
         int codigo;
         bool graduacao;
-        vector <Docente> docentes;
+        vector <Docente*> docentes;
         
         public:
             Curso(int codigo, string nome, bool graduacao);
             int getCodigo();
             string getNome();
             bool isGraduacao();
-            vector <Docente> getListaDocentes();
+            vector <Docente*> getListaDocentes();
             
             /*public void addListaDocentes(Docente docente) {
 		if (!docentes.contains(docente))

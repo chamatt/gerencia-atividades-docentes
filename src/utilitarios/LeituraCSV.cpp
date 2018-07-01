@@ -2,17 +2,20 @@
 #include "../utilitarios/Arquivos.h"
 #include "../utilitarios/Comparador.h"
 #include "../excecoes/execoes.h"
-#include "../dominio/Curso.h"
-#include "../dominio/Discente.h"
 #include "../dominio/Docente.h"
+#include "../dominio/Discente.h"
+#include "../dominio/Atividade.h"
+#include "../dominio/Curso.h"
+#include "../dominio/DidaticoAula.h"
+#include "../dominio/Graduacao.h"
+#include "../dominio/Orientacao.h"
+#include "../dominio/PosGraduacao.h"
 #include "../dominio/ProducaoCientifica.h"
 #include "../professor/DateUtils.h"
 #include "../professor/NumPunctPTBR.h"
-//import gerencia.atividades.dominio.DidaticoAula;
-//import gerencia.atividades.dominio.Graduacao;
-//import gerencia.atividades.dominio.Orientacao;
-//import gerencia.atividades.dominio.PosGraduacao;
-//import gerencia.atividades.dominio.ProducaoCientifica;
+#include "../professor/NumberUtils.h"
+#include "../professor/StringUtils.h"
+#include "src/dominio/Orientacao.h"
 
 using namespace std;
 using namespace excecoes;
@@ -26,122 +29,103 @@ class LeituraCSV {
 	
 private:
         Arquivos arquivos;
-	vector<string> leLinha(Scanner sc) {
-		string all = sc.nextLine();
-		vector<string> propriedades = all.split(";");
-		
-		for(int i = 0; i < propriedades.length; i++) {
-			propriedades[i] = propriedades[i].trim();
+	vector<string> leLinha(ifstream sc) {
+		string linha;
+                getline(sc, linha);
+		Tokenizer tok(linha, ";");
+                
+                vector<string> propriedades = tok.remaining();
+                
+		for(int i = 0; i < propriedades.size(); i++) {
+                    propriedades[i] = trim(propriedades[i]);
 		}
 		
 		return propriedades;
 	}
 
-	void checaCodigoDocenteRepetido(map<Docente> docentes, Docente docente){
-                if(docentes.count(docente.getCodigo) > 0){
-                    throw new CodigoDocenteRepetidoException(docente.getCodigo());
+	void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente){
+                if(docentes->count(docente->getCodigo()) > 0){
+                    throw new CodigoDocenteRepetidoException(docente->getCodigo());
                 }
 	}
 
-	void checaMatriculaDiscenteRepetida(map<int, Discente> discentes, Discente discente){
-            if(discentes.count(discente.getMatricula()) > 0){
-                throw new MatriculaDiscenteRepetidaException(discente.getMatricula());
+	void checaMatriculaDiscenteRepetida(map<int, Discente*> &discentes, Discente* discente){
+            if(discentes->count(discente->getMatricula()) > 0){
+                throw new MatriculaDiscenteRepetidaException(discente->getMatricula());
             }
 	}
 
-	void checaCodigoCursoRepetido(map<Curso> cursos, Curso curso) {
-		if(cursos.count(curso.getCodigo()) > 0){
+	void checaCodigoCursoRepetido(map<Curso*> &cursos, Curso* curso) {
+		if(cursos->count(curso->getCodigo()) > 0){
                     throw new CodigoCursoRepetidoException(curso.getCodigo());
                 }
 	}
 
-	void checaCodigoDisciplinaRepetido(map<DidaticoAula> disciplinas, DidaticoAula disciplina){
-                if(disciplinas.count(disciplina.getCodigo()) > 0){
-                    throw new CodigoDisciplinaRepetidoException(disciplina.getCodigo());
+	void checaCodigoDisciplinaRepetido(map<DidaticoAula*> &disciplinas, DidaticoAula* disciplina){
+                if(disciplinas->count(disciplina->getCodigo()) > 0){
+                    throw new CodigoDisciplinaRepetidoException(disciplina->getCodigo());
                 }
 	}
 
-	void checaDocenteInvalidoEmDisciplina(DidaticoAula disc, map<Docente> lista){
+	void checaDocenteInvalidoEmDisciplina(DidaticoAula* disc, map<Docente*> &docentes){
             
-            for (Docente docente : lista) {
-			if (docente.getCodigo() == disc.getCodigoDocente())
-				return;
-		}
+            if(docentes->count(disc->getDocente()->getCodigo() > 0)) return;
             
-		throw new CodigoDocenteEmDisciplinaInvalidoException(disc.getNome(), disc.getCodigoDocente());
-	}
-
-	void checaDocenteEmOrientacao(map<Docente> docentes, map<Discente> discentes, Orientacao orientacao){
-		for (Docente docente : docentes) {
-			if (docente.getCodigo() == orientacao.getCodigoDocente())
-				return;
-		}
-
-		string nome = null;
-
-		for (Discente discente : discentes) {
-			if (discente.getMatricula() == orientacao.getMatriculaDoDiscente()) {
-				nome = discente.getNome();
-				break;
-			}
-		}
-
-		throw new CodigoDocenteEmOrientacaoInvalidoException(nome, orientacao.getCodigoDocente());
-	}
-
-	void checaDocenteEmProducaoCientifica(map<Docente> docentes, ProducaoCientifica prod){
-		for (Docente docente : docentes) {
-			if (docente.getCodigo() == prod.getCodigoDoDocente())
-				return;
-		}
-
-		throw new CodigoDocenteEmPublicacaoInvalidoException(prod.getTitulo(), prod.getCodigoDoDocente());
-	}
-
-	void checaCursoEmOrientacao(map<Curso> cursos, map<Discente> discentes, Graduacao grad){
-		for (Curso curso : cursos) {
-			if (curso.getCodigo() == grad.getCodigoDoCurso())
-				return;
-		}
-
-		string nome = null;
-
-		for (Discente discente : discentes) {
-			if (discente.getMatricula() == grad.getMatriculaDoDiscente()) {
-				nome = discente.getNome();
-				break;
-			}
-		}
-
-		throw new CodigoCursoEmOrientacaoInvalidoException(nome, grad.getCodigoDoCurso());
-	}
-
-	void checaCursoEmDisciplina(map<Curso> cursos, DidaticoAula disc){
-		for (Curso curso : cursos) {
-			if (curso.getCodigo() == disc.getCodigoDoCurso())
-				return;
-		}
-
-		throw new CodigoCursoEmDisciplinaInvalidoException(disc.getNome(), disc.getCodigoDoCurso());
-	}
-
-	void checaCurso(Curso curso, bool pg) {
-		if (curso.getGraduacao() == pg)
-			throw new NivelCursoInconsistenteException(curso.getNome(), curso.getCodigo());
-	}
-
-	void checaData(map<Discente> discentes, PosGraduacao pg){
-		time_t now = time(0);
-                
-                string dataAtual =  formatDate(now, DATE_FORMAT_PT_BR_SHORT);
+            throw new CodigoDocenteEmDisciplinaInvalidoException(disc->getNome(), disc->getDocente()->getCodigo());
 		
-                string nome = "";
+	}
 
-		if (timeCompare(dataAtual, pg.getDataDeIngresso()) < 0) {
-                    
-                    nome = discentes[pg.getDataDeIngresso].getNome();
-                    throw new DataIngressoFuturaException(nome, pg.getDataDeIngresso());
+	void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao){
+		
+                if(docentes.count(orientacao->getDocente()->getCodigo()) > 0) return;
+
+		string nome = discentes[orientacao->getDiscente()->getMatricula()];
+
+		throw new CodigoDocenteEmOrientacaoInvalidoException(nome, orientacao->getDocente()->getCodigo());
+	}
+
+	void checaDocenteEmProducaoCientifica(map<Docente*> &docentes, ProducaoCientifica* prod){
+                if(docentes.count(prod->getDocente()->getCodigo()) > 0) return;
+
+		throw new CodigoDocenteEmPublicacaoInvalidoException(prod->getTitulo(), prod->getDocente()->getCodigo());
+	}
+
+	void checaCursoEmOrientacao(map<Curso*> &cursos, map<Discente*> &discentes, Graduacao* grad){
+            if(cursos.count(grad->getCurso()->getCodigo()) > 0) return;
+
+            
+            for (Curso curso : cursos) {
+			if (curso.getCodigo() == grad.getCurso()->getCodigo())
+				return;
 		}
+
+		string nome = discentes[grad->getDiscente()->getMatricula()];
+
+		throw new CodigoCursoEmOrientacaoInvalidoException(nome, grad.getCurso()->getCodigo());
+	}
+
+	void checaCursoEmDisciplina(map<Curso*> &cursos, DidaticoAula* disc){
+            if(cursos->count(disc->getCurso()->getCodigo()) > 0) return;
+            
+            throw new CodigoCursoEmDisciplinaInvalidoException(disc->getNome(), disc->getCurso()->getCodigo());
+	}
+
+	void checaCurso(Curso* curso, bool pg) {
+		if (curso->isGraduacao() == pg)
+			throw new NivelCursoInconsistenteException(curso->getNome(), curso->getCodigo());
+	}
+
+	void checaData(map<long, Discente*> discentes, PosGraduacao* pg){
+            Comparador comp();
+            time_t now = time(0);
+            string dataAtual =  formatDate(now, DATE_FORMAT_PT_BR_SHORT);
+            string nome = "";
+            Discente* a;
+            if (comp.timeCompare(dataAtual, pg.getDataDeIngresso())) {
+                a = (discentes[pg->getDiscente()->getMatricula()]);
+                nome = a->getNome();
+                throw new DataIngressoFuturaException(nome, pg.getDataDeIngresso());
+            }
 	}
 
 public:
@@ -233,9 +217,7 @@ public:
 
 	}
 
-	map<DidaticoAula> leDidaticoAulas(map<Docente> docentes, map<Curso> cursos)
-			throws FileNotFoundException, IOException, CodigoDisciplinaRepetidoException,
-			CodigoDocenteEmDisciplinaInvalidoException, CodigoCursoEmDisciplinaInvalidoException {
+	map<DidaticoAula> leDidaticoAulas(map<Docente> docentes, map<Curso> cursos){
 		try (Scanner scanner = new Scanner(new FileReader(arquivos.getDidaticoAulas()));) {
 			scanner.nextLine();
 			map<DidaticoAula> didaticoAulas = new Arraymap<DidaticoAula>();
@@ -261,9 +243,7 @@ public:
 
 	}
 
-	map<Graduacao> leGraduacoes(map<Docente> docentes, map<Discente> discentes, map<Curso> cursos)
-			throws FileNotFoundException, IOException, CodigoDocenteEmOrientacaoInvalidoException,
-			CodigoCursoEmOrientacaoInvalidoException {
+	map<Graduacao> leGraduacoes(map<Docente> docentes, map<Discente> discentes, map<Curso> cursos) {
 		try (Scanner scanner = new Scanner(new FileReader(arquivos.getOrientacaoGraducao()));) {
 			scanner.nextLine();
 			map<Graduacao> graduacoes = new Arraymap<Graduacao>();
@@ -285,9 +265,7 @@ public:
 
 	}
 
-	map<PosGraduacao> lePosGraduacoes(map<Docente> docentes, map<Discente> discentes)
-			throws FileNotFoundException, IOException, ParseException, CodigoDocenteEmOrientacaoInvalidoException,
-			DataIngressoFuturaException {
+	map<PosGraduacao> lePosGraduacoes(map<Docente> docentes, map<Discente> discentes){
 		try (Scanner scanner = new Scanner(new FileReader(arquivos.getOrientacaoPos()));) {
 			scanner.nextLine();
 			map<PosGraduacao> posGraduacoes = new Arraymap<PosGraduacao>();

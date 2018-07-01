@@ -2,6 +2,11 @@
 #define DOCENTE_H
 #include <string>
 
+#include "DidaticoAula.h"
+#include "Graduacao.h"
+#include "PosGraduacao.h"
+#include "ProducaoCientifica.h"
+
 using namespace std;
 
 namespace dominio
@@ -14,6 +19,8 @@ namespace dominio
              string nome;
              int codigo;
              string departamento;
+
+             
              int totalHorasSemanaisAula = 0;
              int totalHorasSemestraisAula = 0;
              int totalHorasSemanaisOrientacao = 0;

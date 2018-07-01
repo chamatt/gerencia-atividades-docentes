@@ -130,7 +130,7 @@ namespace excecoes {
         string msg;
 
     public:
-        CodigoDocenteEmDisciplinaInvalidoException(string nome, int codigo) : msg(message)
+        CodigoDocenteEmDisciplinaInvalidoException(string nome, int codigo)
         {
             msg("Código de docente inválido na disciplina \"" + nome + "\": " + codigo + ".");
         }

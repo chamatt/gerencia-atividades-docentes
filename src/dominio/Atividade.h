@@ -5,13 +5,17 @@
 
 namespace dominio
 {
+    class Docente;
     class Atividade
     {
     protected:
        int CHSemanal;
+       Docente* docente;
         
     public:
         int getCHSemanal();
+        virtual Docente* getDocente() = 0;
+        virtual void setDocente(Docente& docente) = 0;
     };
     
 }

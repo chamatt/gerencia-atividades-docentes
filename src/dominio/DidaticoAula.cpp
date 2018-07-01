@@ -12,15 +12,15 @@ namespace dominio
         this->CHSemanal = CHSemanal;
         this->CHSemestral = CHSemestral;
     }
-        int DidaticoAula::getCHSemestral() {
-            return CHSemestral;
+    int DidaticoAula::getCHSemestral() {
+        return CHSemestral;
     }
 
     string DidaticoAula::getCodigo() {
         return codigo;
     }
 
-    dominio::Docente DidaticoAula::getDocente() {
+    Docente* DidaticoAula::getDocente() {
         return Docente;
     }
 
@@ -28,8 +28,8 @@ namespace dominio
         return nome;
     }
 
-    void DidaticoAula::setDocente(Docente docente) {
-        this->docente = docente;
+    Curso* DidaticoAula::getCurso(){
+        return curso;
     }
     
 

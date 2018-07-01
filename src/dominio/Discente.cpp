@@ -1,4 +1,5 @@
 #include "Discente.h"
+#include "Curso.h"
 
 namespace dominio
 {
@@ -17,6 +18,10 @@ namespace dominio
     string Discente::getNome() 
     {
         return nome;
+    }
+    
+    Curso* Discente::getCurso() {
+        return curso;
     }
 
 

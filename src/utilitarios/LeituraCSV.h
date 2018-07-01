@@ -2,21 +2,23 @@
 #define LEITURACSV_H
 
 
+#include "LeituraCSV.h"
 #include "../utilitarios/Arquivos.h"
 #include "../utilitarios/Comparador.h"
 #include "../excecoes/execoes.h"
-#include "../dominio/Curso.h"
-#include "../dominio/Discente.h"
 #include "../dominio/Docente.h"
+#include "../dominio/Discente.h"
+#include "../dominio/Atividade.h"
+#include "../dominio/Curso.h"
+#include "../dominio/DidaticoAula.h"
+#include "../dominio/Graduacao.h"
+#include "../dominio/Orientacao.h"
+#include "../dominio/PosGraduacao.h"
 #include "../dominio/ProducaoCientifica.h"
 #include "../professor/DateUtils.h"
 #include "../professor/NumPunctPTBR.h"
+#include "src/dominio/Orientacao.h"
 
-//import gerencia.atividades.dominio.DidaticoAula;
-//import gerencia.atividades.dominio.Graduacao;
-//import gerencia.atividades.dominio.Orientacao;
-//import gerencia.atividades.dominio.PosGraduacao;
-//import gerencia.atividades.dominio.ProducaoCientifica;
 
 using namespace std;
 using namespace excecoes;
@@ -27,16 +29,17 @@ using namespace cpp_util;
 class LeituraCSV {
 private:
         Arquivos arquivos;
-	vector<string> leLinha(Scanner sc);
+	vector<string> leLinha(ifstream sc);
 
-	void checaCodigoDocenteRepetido(map<Docente> lista, Docente docente);
-	void checaMatriculaDiscenteRepetida(map<Discente> lista, Discente discente);
-	void checaCodigoCursoRepetido(map<Curso> lista, Curso curso);
-	void checaCodigoDisciplinaRepetido(map<DidaticoAula> lista, DidaticoAula disciplina);
-	void checaDocenteEmOrientacao(map<Docente> docentes, map<Discente> discentes, Orientacao orientacao);
-	void checaDocenteEmProducaoCientifica(map<Docente> docentes, ProducaoCientifica prod);
-	void checaCursoEmOrientacao(map<Curso> cursos, map<Discente> discentes, Graduacao grad);
-	void checaCursoEmDisciplina(map<Curso> cursos, DidaticoAula disc);
+	void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente);
+	void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente);
+	void checaCodigoCursoRepetido(map<int, Curso*> &cursos, Curso* curso);
+	void checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, DidaticoAula* disciplina);
+	void checaDocenteInvalidoEmDisciplina(map<Docente*> &docentes, DidaticoAula* disc);
+        void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao);
+	void checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, ProducaoCientifica* prod);
+        void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, Graduacao* grad);
+	void checaCursoEmDisciplina(map<Curso*> &cursos, DidaticoAula* disc);
 	void checaCurso(Curso curso, bool pg);
 	void checaData(map<Discente> discentes, PosGraduacao pg);
 

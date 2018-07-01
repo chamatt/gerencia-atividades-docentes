@@ -2,12 +2,18 @@
 #include "utilitarios/Arquivos.h"
 #include "dominio/Docente.h"
 #include "dominio/Discente.h"
-
+#include "dominio/Atividade.h"
+#include "dominio/Curso.h"
+#include "dominio/DidaticoAula.h"
+#include "dominio/Graduacao.h"
+#include "dominio/Orientacao.h"
+#include "dominio/PosGraduacao.h"
+#include "dominio/ProducaoCientifica.h"
 
 using namespace std;
-using Arquivos = utilitarios::Arquivos;
-using Docentes = dominio::Docentes;
-using Discentes = dominio::Discentes;
+using namespace utilitarios;
+using namespace dominio;
+
 
 /*
  * 
@@ -17,13 +23,13 @@ int main(int argc, char** argv) {
             Arquivos arquivos = new Arquivos(argc, argv);
 
 //            LeituraCSV leitor;
-            map<int, Docente> docentes;
-            map<int, Discente> discentes;
-            map<int, ProducaoCientifica> producoesCientificas;
-            map<int, Curso> cursos;
-            map<string, DidaticoAula> didaticoAulas;
-            map<int, Graduacao> graduacoes;
-            map<int, PosGraduacao> posGraduacoes;
+            map<int, Docente*> docentes;
+            map<int, Discente*> discentes;
+            map<int, ProducaoCientifica*> producoesCientificas;
+            map<int, Curso*> cursos;
+            map<string, DidaticoAula*> didaticoAulas;
+            map<int, Graduacao*> graduacoes;
+            map<int, PosGraduacao*> posGraduacoes;
 //
 //
 //            leitor = new LeituraCSV(arquivos);
