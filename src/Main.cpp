@@ -5,7 +5,7 @@
 
 
 using namespace std;
-using Arquivos = utilitarios::arquivos;
+using Arquivos = utilitarios::Arquivos;
 using Docentes = dominio::Docentes;
 using Discentes = dominio::Discentes;
 
@@ -14,16 +14,16 @@ using Discentes = dominio::Discentes;
  */
 int main(int argc, char** argv) {
     try {
-            Arquivos arquivos = new Arquivos(args);
+            Arquivos arquivos = new Arquivos(argc, argv);
 
 //            LeituraCSV leitor;
-//            map<int, Docente> docentes;
-//            List<Discente> discentes;
-//            List<ProducaoCientifica> producoesCientificas;
-//            List<Curso> cursos;
-//            List<DidaticoAula> didaticoAulas;
-//            List<Graduacao> graduacoes;
-//            List<PosGraduacao> posGraduacoes;
+            map<int, Docente> docentes;
+            map<int, Discente> discentes;
+            map<int, ProducaoCientifica> producoesCientificas;
+            map<int, Curso> cursos;
+            map<string, DidaticoAula> didaticoAulas;
+            map<int, Graduacao> graduacoes;
+            map<int, PosGraduacao> posGraduacoes;
 //
 //
 //            leitor = new LeituraCSV(arquivos);

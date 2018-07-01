@@ -5,46 +5,48 @@ using namespace std;
 #ifndef ARQUIVOS_H
 #define ARQUIVOS_H
 
-class Arquivos {
-    
-    string docentes;
-    string discentes;
-    string producaoCientifica;
-    string cursos;
-    string didaticoAulas;
-    string orientacaoGraducao;
-    string orientacaoPos;
-    bool writeOnly = false;
-    bool readOnly = false;
+namespace utilitarios {
+    class Arquivos {
 
-public:
+        string docentes;
+        string discentes;
+        string producaoCientifica;
+        string cursos;
+        string didaticoAulas;
+        string orientacaoGraducao;
+        string orientacaoPos;
+        bool writeOnly = false;
+        bool readOnly = false;
 
-    Arquivos(int argc, char* argv[]);
-    Arquivos(const Arquivos& orig);
-    
-    string getCursos() const;
+    public:
 
-    string getDidaticoAulas() const;
+        Arquivos(int argc, char* argv[]);
+        Arquivos(const Arquivos& orig);
 
-    string getDiscentes() const;
+        string getCursos() const;
 
-    string getDocentes() const;
+        string getDidaticoAulas() const;
 
-    string getOrientacaoGraducao() const;
+        string getDiscentes() const;
 
-    string getOrientacaoPos() const;
+        string getDocentes() const;
 
-    string getProducaoCientifica() const;
+        string getOrientacaoGraducao() const;
 
-    bool isReadOnly() const;
+        string getOrientacaoPos() const;
 
-    bool isWriteOnly() const;
+        string getProducaoCientifica() const;
 
-    
-    virtual ~Arquivos();
-private:
+        bool isReadOnly() const;
 
-};
+        bool isWriteOnly() const;
+
+
+        virtual ~Arquivos();
+    private:
+
+    };
+}
 
 #endif /* ARQUIVOS_H */
 
