@@ -22,23 +22,23 @@ public:
     Arquivos(int argc, char* argv[]);
     Arquivos(const Arquivos& orig);
     
-    string GetCursos() const;
+    string getCursos() const;
 
-    string GetDidaticoAulas() const;
+    string getDidaticoAulas() const;
 
-    string GetDiscentes() const;
+    string getDiscentes() const;
 
-    string GetDocentes() const;
+    string getDocentes() const;
 
-    string GetOrientacaoGraducao() const;
+    string getOrientacaoGraducao() const;
 
-    string GetOrientacaoPos() const;
+    string getOrientacaoPos() const;
 
-    string GetProducaoCientifica() const;
+    string getProducaoCientifica() const;
 
-    bool IsReadOnly() const;
+    bool isReadOnly() const;
 
-    bool IsWriteOnly() const;
+    bool isWriteOnly() const;
 
     
     virtual ~Arquivos();
