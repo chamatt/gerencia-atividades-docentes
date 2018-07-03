@@ -24,7 +24,9 @@ namespace dominio
     }
 
 
-    
+    PosGraduacao* Discente::getPosGraduacao(){
+        return posGraduacao;
+    }
     
     
 }

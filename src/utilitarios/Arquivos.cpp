@@ -3,9 +3,6 @@
 using namespace std;
 
 namespace utilitarios {
-    
-   /* Arquivos::Arquivos(const Arquivos& orig) {
-    }*/
 
     Arquivos::~Arquivos() {
     }

@@ -19,9 +19,10 @@ namespace utilitarios {
         string orientacaoPos;
        
     public:
-
+        
         Arquivos(int argc, char* argv[]);
-       // Arquivos(const Arquivos& orig);
+        Arquivos(const Arquivos& orig);
+        Arquivos();
 
         string getCursos();
 

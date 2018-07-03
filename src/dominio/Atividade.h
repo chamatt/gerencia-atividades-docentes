@@ -15,8 +15,8 @@ namespace dominio
         
     public:
         int getCHSemanal();
-        virtual Docente* getDocente() = 0;
-        virtual void setDocente(Docente& docente) = 0;
+        Docente* getDocente();
+        void setDocente(Docente* docente);
     };
     
 }

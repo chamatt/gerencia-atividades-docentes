@@ -21,6 +21,8 @@ namespace dominio
             long getMatricula();  
             string getNome();  
             Curso* getCurso();  
+            PosGraduacao* getPosGraduacao();
+            
             
 	/*void addListaProducao(ProducaoCientifica prod);
 

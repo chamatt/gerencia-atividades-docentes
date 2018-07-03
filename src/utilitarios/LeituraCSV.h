@@ -27,45 +27,46 @@ using namespace dominio;
 using namespace utilitarios;
 using namespace cpp_util;
 
-class LeituraCSV {
-private:
-        Arquivos arquivos;
-	vector<string> leLinha(ifstream sc);
 
-	void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente);
-	void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente);
-	void checaCodigoCursoRepetido(map<int, Curso*> &cursos, Curso* curso);
-	void checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, DidaticoAula* disciplina);
-	void checaDocenteInvalidoEmDisciplina(map<Docente*> &docentes, DidaticoAula* disc);
-        void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao);
-	void checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, ProducaoCientifica* prod);
-        void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, Graduacao* grad);
-	void checaCursoEmDisciplina(map<Curso*> &cursos, DidaticoAula* disc);
-	void checaCurso(Curso curso, bool pg);
-	void checaData(map<Discente> discentes, PosGraduacao pg);
+namespace utilitarios {
+    class LeituraCSV {
+    private:
+            Arquivos arquivos;
+            vector<string> leLinha(ifstream sc);
 
-public:
-        LeituraCSV(Arquivos arquivos);
-        
-        LeituraCSV(const LeituraCSV& orig);
-        
-        virtual ~LeituraCSV();
-    
-	map<Docente> leDocentes();
+            void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente);
+            void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente);
+            void checaCodigoCursoRepetido(map<int, Curso*> &cursos, Curso* curso);
+            void checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, DidaticoAula* disciplina);
+            void checaDocenteInvalidoEmDisciplina(map<int, Docente*> &docentes, DidaticoAula* disc);
+            void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao);
+            void checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, ProducaoCientifica* prod);
+            void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, Graduacao* grad);
+            void checaCursoEmDisciplina(map<int, Curso*> &cursos, DidaticoAula* disc);
+            void checaCurso(Curso* curso, bool pg);
+            void checaData(map<long, Discente*> discentes, PosGraduacao* pg);
 
-	map<Discente> leDiscentes();
+    public:
+            LeituraCSV(Arquivos& arquivos);
 
-	map<ProducaoCientifica> leProducoesCientificas(map<Docente> docentes);
+            virtual ~LeituraCSV();
 
-	map<Curso> leCursos();
+            map<int, Docente> leDocentes();
 
-	map<DidaticoAula> leDidaticoAulas(map<Docente> docentes, map<Curso> cursos);
+            map<long, Discente> leDiscentes();
 
-	map<Graduacao> leGraduacoes(map<Docente> docentes, map<Discente> discentes, map<Curso> cursos);
+            map<int, ProducaoCientifica> leProducoesCientificas(map<int, Docente> docentes);
 
-	map<PosGraduacao> lePosGraduacoes(map<Docente> docentes, map<Discente> discentes);
+            map<int, Curso> leCursos();
 
-};
+            map<string, DidaticoAula> leDidaticoAulas(map<int, Docente> docentes, map<int, Curso> cursos);
 
+            map<int, Graduacao> leGraduacoes(map<int, Docente> docentes, map<long, Discente> discentes, map<int, Curso> cursos);
+
+            map<int, PosGraduacao> lePosGraduacoes(map<int, Docente> docentes, map<int, Discente> discentes);
+
+    };
+
+}
 #endif /* LEITURACSV_H */
 

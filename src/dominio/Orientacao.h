@@ -10,7 +10,7 @@ namespace dominio
         Discente* discente;
      
     public:
-        //virtual Discente* getDiscente() = 0;
+        Discente* getDiscente();
 
     };
 }
