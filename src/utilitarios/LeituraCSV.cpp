@@ -33,7 +33,7 @@ namespace utilitarios {
             this->arquivos = arquivos;
         }
         
-	vector<string> LeituraCSV::leLinha(ifstream sc) {
+	vector<string> LeituraCSV::leLinha(ifstream& sc) {
 		string linha;
                 getline(sc, linha);
                 
@@ -41,7 +41,7 @@ namespace utilitarios {
                 
                 vector<string> propriedades = tok.remaining();
                 
-		for(int i = 0; i < (int)propriedades.size(); i++) {
+		for(int i = 0; i < (int) propriedades.size(); i++) {
                     propriedades[i] = trim(propriedades[i]);
 		}
 		
@@ -115,12 +115,11 @@ namespace utilitarios {
 	}
 
 	void LeituraCSV::checaData(map<long, Discente*> discentes, PosGraduacao* pg){
-            Comparador comp();
             time_t now = time(0);
             string dataAtual =  formatDate(now, DATE_FORMAT_PT_BR_SHORT);
             string nome = "";
             Discente* a;
-            if (comp.timeCompare(dataAtual, pg->getDataDeIngresso()) < 0) {
+            if (Comparador::timeCompare(dataAtual, pg->getDataDeIngresso()) < 0) {
                 a = (discentes[pg->getDiscente()->getMatricula()]);
                 nome = a->getNome();
                 throw DataIngressoFuturaException(nome, pg->getDataDeIngresso());

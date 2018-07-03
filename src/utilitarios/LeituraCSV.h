@@ -32,7 +32,7 @@ namespace utilitarios {
     class LeituraCSV {
     private:
             Arquivos arquivos;
-            vector<string> leLinha(ifstream sc);
+            vector<string> leLinha(ifstream& sc);
 
             void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente);
             void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente);
