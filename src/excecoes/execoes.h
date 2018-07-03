@@ -64,7 +64,7 @@ namespace excecoes {
     public:
         CodigoDocenteRepetidoException(int codigo)
         {
-            msg("Código repetido para docente: " + to_string(codigo) + ".");
+            msg = "Código repetido para docente: " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -81,7 +81,7 @@ namespace excecoes {
     public:
         MatriculaDiscenteRepetidaException(int codigo)
         {
-         msg("Código repetido para discente: " + to_string(codigo) + ".");   
+         msg = "Código repetido para discente: " + to_string(codigo) + ".";   
         }
 
         const char * what() const throw()
@@ -98,7 +98,7 @@ namespace excecoes {
     public:
         CodigoCursoRepetidoException(int codigo)
         {
-            msg("Código repetido para curso: " + to_string(codigo) + ".");
+            msg = "Código repetido para curso: " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -115,7 +115,7 @@ namespace excecoes {
     public:
         CodigoDisciplinaRepetidoException(string codigo)
         {
-            msg("Código repetido para disciplina: " + to_string(codigo) + ".");
+            msg = "Código repetido para disciplina: " + codigo + ".";
         }
 
         const char * what() const throw()
@@ -132,7 +132,7 @@ namespace excecoes {
     public:
         CodigoDocenteEmDisciplinaInvalidoException(string nome, int codigo)
         {
-            msg("Código de docente inválido na disciplina \"" + nome + "\": " + to_string(codigo) + ".");
+            msg = "Código de docente inválido na disciplina \"" + nome + "\": " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -149,7 +149,7 @@ namespace excecoes {
     public:
         CodigoDocenteEmOrientacaoInvalidoException(string nome, int codigo)
         {
-            msg("Código de docente inválido na orientação do aluno \"" + nome + "\": " + to_string(codigo) + ".");
+            msg = "Código de docente inválido na orientação do aluno \"" + nome + "\": " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -166,7 +166,7 @@ namespace excecoes {
     public:
         CodigoDocenteEmPublicacaoInvalidoException(string nome, int codigo)
         {
-            msg("Código de docente inválido na publicação \"" + nome + "\": " + to_string(codigo) + ".");
+            msg = "Código de docente inválido na publicação \"" + nome + "\": " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -183,7 +183,7 @@ namespace excecoes {
     public:
         CodigoCursoEmOrientacaoInvalidoException(string nome, int codigo)
         {
-            msg("Código de curso inválido na orientação do aluno \"" + nome + "\": " + to_string(codigo) + ".");
+            msg = "Código de curso inválido na orientação do aluno \"" + nome + "\": " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -200,7 +200,7 @@ namespace excecoes {
     public:
         CodigoCursoEmDisciplinaInvalidoException(string nome, int codigo) 
         {
-            msg("Código de curso inválido na disciplina \"" + nome + "\": " + to_string(codigo) + ".");
+            msg = "Código de curso inválido na disciplina \"" + nome + "\": " + to_string(codigo) + ".";
         }
 
         const char * what() const throw()
@@ -217,7 +217,7 @@ namespace excecoes {
     public:
         NivelCursoInconsistenteException(string nome, int codigo) 
         {
-            msg("Inconsistência ao definir o nível do curso: " + to_string(codigo) + " - " + nome + ".");
+            msg = "Inconsistência ao definir o nível do curso: " + to_string(codigo) + " - " + nome + ".";
         }
 
         const char * what() const throw()
@@ -234,7 +234,7 @@ namespace excecoes {
     public:
         DataIngressoFuturaException(string nome, string data)
         {
-            msg("Data de ingresso do aluno \"" + nome + "\" está no futuro: " + data + ".");
+            msg = "Data de ingresso do aluno \"" + nome + "\" está no futuro: " + data + ".";
         }
 
         const char * what() const throw()
