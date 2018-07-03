@@ -3,10 +3,7 @@
 
 namespace dominio {
     
-    Discente* Orientacao::getDiscente(){
-        return discente;
-    }
-    
+   
 }
 
 

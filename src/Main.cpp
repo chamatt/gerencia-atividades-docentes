@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <map>
 #include "utilitarios/Arquivos.h"
 #include "dominio/Docente.h"
 #include "dominio/Discente.h"
@@ -19,8 +20,8 @@ using namespace dominio;
  * 
  */
 int main(int argc, char** argv) {
-    try {
-            Arquivos arquivos = new Arquivos(argc, argv);
+    
+            Arquivos* arquivos = new Arquivos(argc, argv);
 
 //            LeituraCSV leitor;
             map<int, Docente*> docentes;
@@ -70,7 +71,7 @@ int main(int argc, char** argv) {
 //        } catch (NivelCursoInconsistenteException ni) {
 //        } catch (DataIngressoFuturaException df) {
 //        }
-    }
+    
     
     
     

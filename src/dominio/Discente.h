@@ -17,18 +17,18 @@ namespace dominio
         PosGraduacao* posGraduacao;
           
         public:  
-            Discente(long matricula, string nome, int codigoDoCurso);  
+            Discente(long matricula, string nome);  
             long getMatricula();  
             string getNome();  
             Curso* getCurso();  
             
-	void addListaProducao(ProducaoCientifica prod);
+	/*void addListaProducao(ProducaoCientifica prod);
 
 	void addListaGraduacao(Graduacao grad);
 
 	void addListaPosGraduacao(PosGraduacao pg);
 
-	void addListaDidaticoAula(DidaticoAula disc);
+	void addListaDidaticoAula(DidaticoAula disc);*/
 
 
     };  

@@ -20,10 +20,6 @@ namespace dominio
         return codigo;
     }
 
-    Docente* DidaticoAula::getDocente() {
-        return Docente;
-    }
-
     string DidaticoAula::getNome() {
         return nome;
     }

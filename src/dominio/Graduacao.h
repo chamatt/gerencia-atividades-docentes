@@ -1,7 +1,7 @@
 #ifndef GRADUACAO_H
 #define GRADUACAO_H
-#include "Discente.h"
 #include "Curso.h"
+#include "Orientacao.h"
 
 namespace dominio
 {

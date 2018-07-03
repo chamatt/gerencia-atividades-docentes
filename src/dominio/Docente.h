@@ -5,6 +5,7 @@
 #include "DidaticoAula.h"
 #include "Graduacao.h"
 #include "PosGraduacao.h"
+#include "Curso.h"
 #include "ProducaoCientifica.h"
 
 using namespace std;
@@ -33,10 +34,10 @@ namespace dominio
             string getDepartamento();
             int getCodigo();
             int getTotalHorasSemanaisAula();
-            getTotalAulasSemestraisAula();
-            getTotalAulasSemanaisOrientacao();
-            getNumProducoesQualificadas();
-            getNumProducoesNaoQualificadas();
+            int getTotalAulasSemestraisAula();
+            int getTotalAulasSemanaisOrientacao();
+            int getNumProducoesQualificadas();
+            int getNumProducoesNaoQualificadas();
             
             
             

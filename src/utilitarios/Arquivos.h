@@ -1,9 +1,11 @@
+#ifndef ARQUIVOS_H
+#define ARQUIVOS_H
+
 #include <string>
+#include <cstring>
 
 using namespace std;
 
-#ifndef ARQUIVOS_H
-#define ARQUIVOS_H
 
 namespace utilitarios {
     class Arquivos {
@@ -15,34 +17,27 @@ namespace utilitarios {
         string didaticoAulas;
         string orientacaoGraducao;
         string orientacaoPos;
-        bool writeOnly = false;
-        bool readOnly = false;
-
+       
     public:
 
         Arquivos(int argc, char* argv[]);
-        Arquivos(const Arquivos& orig);
+       // Arquivos(const Arquivos& orig);
 
-        string getCursos() const;
+        string getCursos();
 
-        string getDidaticoAulas() const;
+        string getDidaticoAulas();
 
-        string getDiscentes() const;
+        string getDiscentes();
 
-        string getDocentes() const;
+        string getDocentes();
 
-        string getOrientacaoGraducao() const;
+        string getOrientacaoGraducao();
 
-        string getOrientacaoPos() const;
+        string getOrientacaoPos();
 
-        string getProducaoCientifica() const;
-
-        bool isReadOnly() const;
-
-        bool isWriteOnly() const;
-
-
-        virtual ~Arquivos();
+        string getProducaoCientifica();
+        
+        ~Arquivos();
     private:
 
     };

@@ -7,7 +7,8 @@ using namespace std;
 
 namespace dominio
 {
-    class docente;
+    class Docente;
+    
     class Curso 
     {
         string nome;

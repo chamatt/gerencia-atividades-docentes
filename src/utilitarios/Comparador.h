@@ -1,27 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Comparador.h
- * Author: mathe
- *
- * Created on 30 de Junho de 2018, 19:47
- */
-
-#include "../dominio/Docente.h"
 #include "../professor/StringUtils.h"
 #include "../professor/DateUtils.h"
 #include "../professor/NumberUtils.h"
 #include "../professor/Tokenizer.h"
-
+#include "../dominio/Discente.h"
+#include "../dominio/Docente.h"
+#include "../dominio/DidaticoAula.h"
 
 
 #ifndef COMPARADOR_H
 #define COMPARADOR_H
 namespace utilitarios{
+    
     class Comparador {
         public:
             Comparador();

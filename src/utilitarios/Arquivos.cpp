@@ -1,17 +1,17 @@
-#include <string>
 #include "Arquivos.h"
+
 using namespace std;
 
-
 namespace utilitarios {
-    Arquivos::Arquivos(const Arquivos& orig) {
-    }
+    
+   /* Arquivos::Arquivos(const Arquivos& orig) {
+    }*/
 
     Arquivos::~Arquivos() {
     }
     
     Arquivos::Arquivos(int argc, char* argv[]) {
-            for (int i = 0; i < argv.length; i++) {
+            for (int i = 0; i < argc; i++) {
                     if (!strcmp(argv[i], "-d")) {
                             docentes = string(argv[i + 1]);
                     }
@@ -32,12 +32,6 @@ namespace utilitarios {
                     }
                     if (!strcmp(argv[i], "-op")) {
                             orientacaoPos = string(argv[i + 1]);
-                    }
-                    if (!strcmp(argv[i], "--read-only")) {
-                            readOnly = true;
-                    }
-                    if (!strcmp(argv[i], "--write-only")) {
-                            writeOnly = true;
                     }
             }
 
@@ -73,15 +67,5 @@ namespace utilitarios {
     string Arquivos::getOrientacaoPos() {
             return orientacaoPos;
     }
-
-    bool Arquivos::isWriteOnly() {
-            return writeOnly;
-    }
-
-    bool Arquivos::isReadOnly() {
-            return readOnly;
-    }
-
-
 }
 

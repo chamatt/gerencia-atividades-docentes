@@ -17,7 +17,8 @@
 #include "../dominio/ProducaoCientifica.h"
 #include "../professor/DateUtils.h"
 #include "../professor/NumPunctPTBR.h"
-#include "src/dominio/Orientacao.h"
+#include "../dominio/Orientacao.h"
+#include <map>
 
 
 using namespace std;

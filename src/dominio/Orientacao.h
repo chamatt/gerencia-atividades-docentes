@@ -1,6 +1,7 @@
 #ifndef ORIENTACAO_H
 #define ORIENTACAO_H
 #include "Discente.h"
+#include "Atividade.h"
 
 namespace dominio
 {
@@ -9,7 +10,7 @@ namespace dominio
         Discente* discente;
      
     public:
-        virtual Discente* getDiscente() = 0;
+        //virtual Discente* getDiscente() = 0;
 
     };
 }

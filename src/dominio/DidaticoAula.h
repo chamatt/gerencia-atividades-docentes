@@ -1,6 +1,7 @@
 #ifndef DIDATICOAULA_H
 #define DIDATICOAULA_H
 #include "Atividade.h"
+#include "Curso.h"
 #include <string>
 
 using namespace std;
@@ -9,7 +10,6 @@ namespace dominio
 {
     class DidaticoAula : public Atividade
     {
-        
         string codigo;
         string nome;
         Curso* curso;

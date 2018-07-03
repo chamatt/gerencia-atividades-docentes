@@ -3,11 +3,10 @@
 
 namespace dominio
 {
-    Discente :: Discente(long matricula, string nome, int codigoDoCurso)
+    Discente :: Discente(long matricula, string nome)
     {
         this->matricula = matricula;
 	this->nome = nome;
-	this->codigoDoCurso = codigoDoCurso;
     }
     
     long Discente::getMatricula() 

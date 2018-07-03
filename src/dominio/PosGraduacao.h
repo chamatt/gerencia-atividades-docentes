@@ -2,6 +2,7 @@
 #define POSGRADUACAO_H
 
 #include <string>
+#include "Orientacao.h"
 
 
 using namespace std;

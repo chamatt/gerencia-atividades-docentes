@@ -15,19 +15,17 @@
 #include "../professor/NumPunctPTBR.h"
 #include "../professor/NumberUtils.h"
 #include "../professor/StringUtils.h"
-#include "src/dominio/Orientacao.h"
+#include "../dominio/Orientacao.h"
 
 using namespace std;
 using namespace excecoes;
 using namespace dominio;
-using namespace utilitarios;
 using namespace cpp_util;
 
 
 
-class LeituraCSV {
-	
-private:
+namespace utilitarios {
+    
         Arquivos arquivos;
 	vector<string> leLinha(ifstream sc) {
 		string linha;
@@ -127,8 +125,7 @@ private:
                 throw new DataIngressoFuturaException(nome, pg.getDataDeIngresso());
             }
 	}
-
-public:
+        
 	map<Docente> leDocentes() throws FileNotFoundException, IOException, CodigoDocenteRepetidoException {
 
 		try (Scanner scanner = new Scanner(new FileReader(arquivos.getDocentes()));) {

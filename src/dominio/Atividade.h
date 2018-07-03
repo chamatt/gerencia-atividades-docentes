@@ -6,6 +6,7 @@
 namespace dominio
 {
     class Docente;
+    
     class Atividade
     {
     protected:
