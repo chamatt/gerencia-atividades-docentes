@@ -16,7 +16,9 @@ namespace dominio
         int CHSemestral;
         
         public: 
-            DidaticoAula(string codigo, string nome, int CHSemanal, int CHSemestral);
+            
+            DidaticoAula(string codigo, string nome, Docente* docente, int CHSemanal, int CHSemestral,
+                                    Curso* curso);
             string getCodigo();
             string getNome();
             int getCHSemestral();

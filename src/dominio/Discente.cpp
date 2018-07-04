@@ -28,6 +28,17 @@ namespace dominio
         return posGraduacao;
     }
     
+    void Discente::setPosGraduacao(PosGraduacao* posGraduacao){
+        this->posGraduacao = posGraduacao;
+    }
+    
+    Graduacao* Discente::getGraduacao(){
+        return graduacao;
+    }
+    void Discente::setGraduacao(Graduacao* graduacao){
+        this->graduacao = graduacao;
+    }
+    
     
 }
 

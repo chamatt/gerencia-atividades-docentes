@@ -50,6 +50,38 @@ namespace dominio
         return totalHorasSemanaisAula;
     }
 
+    
+        void Docente::addListaProducao(ProducaoCientifica* prod) {
+		producoes.push_back(prod);
+	}
+
+	void Docente::addListaGraduacao(Graduacao* grad) {
+		graduacoes.push_back(grad);
+	}
+
+	void Docente::addListaPosGraduacao(PosGraduacao* pg) {
+		posGraduacoes.push_back(pg);
+	}
+
+	void Docente::addListaDidaticoAula(DidaticoAula* disc) {
+		disciplinas.push_back(disc);
+	}
+
+	vector<DidaticoAula*> Docente::getDisciplinas() {
+		return disciplinas;
+	}
+
+	vector<Graduacao*> Docente::getGraduacoes() {
+		return graduacoes;
+	}
+
+	vector<PosGraduacao*> Docente::getPosGraduacoes() {
+		return posGraduacoes;
+	}
+
+	vector<ProducaoCientifica*> Docente::getProducoes() {
+		return producoes;
+	}
 
 
      

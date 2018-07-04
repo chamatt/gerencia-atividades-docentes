@@ -7,10 +7,12 @@ namespace dominio
 {
     class Orientacao: public Atividade {
         
+    protected:
         Discente* discente;
      
     public:
         Discente* getDiscente();
+        void setDiscente(Discente* discente);
 
     };
 }
