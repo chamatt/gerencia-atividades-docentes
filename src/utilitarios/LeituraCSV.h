@@ -34,17 +34,17 @@ namespace utilitarios {
             Arquivos arquivos;
             vector<string> leLinha(ifstream& sc);
 
-            void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente);
-            void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente);
-            void checaCodigoCursoRepetido(map<int, Curso*> &cursos, Curso* curso);
-            void checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, DidaticoAula* disciplina);
-            void checaDocenteInvalidoEmDisciplina(map<int, Docente*> &docentes, DidaticoAula* disc);
-            void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao);
-            void checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, ProducaoCientifica* prod);
-            void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, Graduacao* grad);
-            void checaCursoEmDisciplina(map<int, Curso*> &cursos, DidaticoAula* disc);
+            void checaCodigoDocenteRepetido(map<int, Docente*> &docentes, int codigoDoDocente);
+            void checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, long matricula);
+            void checaCodigoCursoRepetido(map<int, Curso*> &cursos, int codigoDoCurso);
+            void checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, string codigoDaDisciplina);
+            void checaDocenteInvalidoEmDisciplina(map<int, Docente*> &docentes, int codigoDoDocente, string nomeDaDisciplina);
+            void checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, int codigoDoDocente, int matriculaDoDiscente);
+            void checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, int codigoDoDocente, string tituloDaProducao);
+            void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, int codigoDoCurso, long matriculaDoDiscente);
+            void checaCursoEmDisciplina(map<int, Curso*> &cursos, int codigoDoCurso, string nomeDaDisciplina);
             void checaCurso(Curso* curso, bool pg);
-            void checaData(map<long, Discente*> discentes, PosGraduacao* pg);
+            void checaData(map<long, Discente*> discentes, string dataDeIngresso, long matriculaDoDiscente);
 
     public:
             LeituraCSV(Arquivos& arquivos);
@@ -53,17 +53,17 @@ namespace utilitarios {
 
             map<int, Docente*> leDocentes();
 
-            map<long, Discente> leDiscentes();
+            map<long, Discente*> leDiscentes();
 
-            map<int, ProducaoCientifica> leProducoesCientificas(map<int, Docente> docentes);
+            map<int, ProducaoCientifica*> leProducoesCientificas(map<int, Docente*> docentes);
 
-            map<int, Curso> leCursos();
+            map<int, Curso*> leCursos();
 
-            map<string, DidaticoAula> leDidaticoAulas(map<int, Docente> docentes, map<int, Curso> cursos);
+            map<string, DidaticoAula*> leDidaticoAulas(map<int, Docente*>& docentes, map<int, Curso*>& cursos);
 
-            map<int, Graduacao> leGraduacoes(map<int, Docente> docentes, map<long, Discente> discentes, map<int, Curso> cursos);
+            map<long, Graduacao*> leGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes, map<int, Curso*> &cursos);
 
-            map<int, PosGraduacao> lePosGraduacoes(map<int, Docente> docentes, map<int, Discente> discentes);
+            map<long, PosGraduacao*> lePosGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes);
 
     };
 

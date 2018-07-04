@@ -24,13 +24,13 @@ int main(int argc, char** argv) {
             Arquivos* arquivos = new Arquivos(argc, argv);
 
 //            LeituraCSV leitor;
-            map<int, Docente*> docentes;
-            map<int, Discente*> discentes;
-            map<int, ProducaoCientifica*> producoesCientificas;
-            map<int, Curso*> cursos;
-            map<string, DidaticoAula*> didaticoAulas;
-            map<int, Graduacao*> graduacoes;
-            map<int, PosGraduacao*> posGraduacoes;
+            map<int, Docente*> docentes; // Codigo do docente
+            map<long, Discente*> discentes; // Matricula do discente
+            map<int, ProducaoCientifica*> producoesCientificas; // codigo do docente
+            map<int, Curso*> cursos; // Codigo do curso
+            map<string, DidaticoAula*> didaticoAulas; // Codigo da aula
+            map<long, Graduacao*> graduacoes; // matricula do discente
+            map<long, PosGraduacao*> posGraduacoes; // matricula do discente
 //
 //
 //            leitor = new LeituraCSV(arquivos);

@@ -1,8 +1,11 @@
 #include "ProducaoCientifica.h"
+#include <string>
+
+using namespace std;
 
 namespace dominio
 {
-
+    
     ProducaoCientifica::ProducaoCientifica(string titulo, bool qualificada) 
     {
         this->titulo = titulo;
