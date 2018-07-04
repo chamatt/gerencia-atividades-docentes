@@ -5,21 +5,16 @@ using namespace cpp_util;
 
 namespace utilitarios {
     
-        Comparador::Comparador() {
-
-        }
-
-        Comparador::~Comparador() {
-        }
-
         int Comparador::timeCompare(string date1, string date2){
             time_t d1 =  parseDate(date1, DATE_FORMAT_PT_BR_SHORT);
             time_t d2 =  parseDate(date2, DATE_FORMAT_PT_BR_SHORT);
             return d1 - d2;
         }
 
-        int Comparador::PAD(Docente* d1, Docente* d2){
-            return stringCompare(d1->getNome(), d2->getNome());
+        bool Comparador::PAD(Docente* d1, Docente* d2)
+        {
+            int value = stringCompare(d1->getNome(), d2->getNome());
+            return value < 0;
         }   
 
         int Comparador::PPG(Discente* d1, Discente* d2) {

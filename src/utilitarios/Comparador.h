@@ -15,7 +15,7 @@ namespace utilitarios{
     namespace Comparador {
         
             int timeCompare(string date1, string date2);
-            int PAD(Docente* d1, Docente* d2);
+            bool PAD(Docente* d1, Docente* d2);
             int PPG(Discente* d1, Discente* d2);
             int Alocacao(DidaticoAula* d1, DidaticoAula* d2);
 
