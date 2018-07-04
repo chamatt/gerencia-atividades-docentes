@@ -55,7 +55,7 @@ namespace utilitarios {
 
             map<long, Discente*> leDiscentes();
 
-            map<int, ProducaoCientifica*> leProducoesCientificas(map<int, Docente*> docentes);
+            map<long, ProducaoCientifica*> leProducoesCientificas(map<int, Docente*> &docentes);
 
             map<int, Curso*> leCursos();
 

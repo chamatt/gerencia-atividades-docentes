@@ -1,6 +1,6 @@
 #include "EscritaCSV.h"
 
-namespace utilitario
+namespace utilitarios
 {
 
     void EscritaCSV::escrevePAD(map<int, Docente*> &docentes) 
@@ -62,6 +62,7 @@ namespace utilitario
                         out << vet[i]->getCHSemestral() << endl;
                     }
                 }
+                 out.close();
         }
             void EscritaCSV::escreveDiscentesProGrad(map<long, Discente*> &discentes) 
             {
@@ -91,6 +92,7 @@ namespace utilitario
                         out << discentePPG[i]->getNome() << endl;
                     }
                  }
+                  out.close();
             }
 
 

@@ -173,7 +173,7 @@ namespace utilitarios {
             ifstream stream(arquivos.getDiscentes());
             
             if (stream.is_open()) {
-                map<int, Discente*> discentes;
+                map<long, Discente*> discentes;
                 string descartavel;
                 getline(stream, descartavel);
                 while (stream.good())
@@ -188,10 +188,10 @@ namespace utilitarios {
                         throw ParseException();
                     }
                     string nome = propriedades[1];
-
+                    codigoCurso++;
                     checaMatriculaDiscenteRepetida(discentes, matricula);
                     
-                    Discente* discente = new Discente(matricula, nome, codigoCurso);
+                    Discente* discente = new Discente(matricula, nome);
                     
                     discentes[matricula] = discente;
                 }
@@ -207,7 +207,7 @@ namespace utilitarios {
 
         
         
-	map<int, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
+	map<long, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
 //			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
 		
             
@@ -280,7 +280,7 @@ namespace utilitarios {
                     }
                     string nome = propriedades[1];
                     bool graduacao = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
-                    bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
+                    //bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
                     
                     checaCodigoCursoRepetido(cursos, codigo);
                     
@@ -301,7 +301,7 @@ namespace utilitarios {
 	}
 
         
-	map<DidaticoAula> LeituraCSV::leDidaticoAulas(map<int, Docente*> &docentes, map<int, Curso*> &cursos){
+	map<string,DidaticoAula*> LeituraCSV::leDidaticoAulas(map<int, Docente*> &docentes, map<int, Curso*> &cursos){
 		
             
             
@@ -337,7 +337,7 @@ namespace utilitarios {
                     checaCursoEmDisciplina(cursos, codigoCurso, nome);
                     
                     // Instancia uma aula e adiciona no mapa de aulas
-                    DidaticoAula* didaticoAula = new DidaticoAula(codigo, nome, docentes[codigoDocente] cargaSemanal, cargaSemestral, cursos[codigoCurso]);
+                    DidaticoAula* didaticoAula = new DidaticoAula(codigo, nome, docentes[codigoDocente], cargaSemanal, cargaSemestral, cursos[codigoCurso]);
                     didaticoAulas[codigo] = didaticoAula;
                             
                     //Conexao com docente
@@ -363,7 +363,7 @@ namespace utilitarios {
             ifstream stream(arquivos.getOrientacaoGraducao());
             
             if (stream.is_open()) {
-                map<int, Graduacao*> graduacoes;
+                map<long, Graduacao*> graduacoes;
                 string descartavel;
                 getline(stream, descartavel);
                 while (stream.good())
@@ -421,7 +421,7 @@ namespace utilitarios {
             ifstream stream(arquivos.getOrientacaoPos());
             
             if (stream.is_open()) {
-                map<int, PosGraduacao*> posGraduacoes;
+                map<long, PosGraduacao*> posGraduacoes;
                 string descartavel;
                 getline(stream, descartavel);
                 while (stream.good())

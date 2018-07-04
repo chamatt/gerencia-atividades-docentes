@@ -15,7 +15,7 @@ namespace dominio
         Docente* docente;
        
         public:
-            ProducaoCientifica(string titulo, bool qualificada);
+            ProducaoCientifica(Docente* docente,string titulo, bool qualificada);
             string getTitulo();
             bool isQualificada();
             Docente* getDocente();
