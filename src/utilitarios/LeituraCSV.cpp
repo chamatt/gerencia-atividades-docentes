@@ -96,9 +96,11 @@ namespace utilitarios {
                 throw DataIngressoFuturaException(nome, dataDeIngresso);
             }
 	}
-        
+    
+
+    // Faz a leitura da planilha de docentes
+    // Cria um mapa no qual a chave é o codigo do docente e o valor é um ponteiro para Docente.
 	map<int, Docente*> LeituraCSV::leDocentes() {
-        //throws (FileNotFoundException, IOException, CodigoDocenteRepetidoException) {
 
             ifstream stream(arquivos.getDocentes());
             
@@ -132,9 +134,9 @@ namespace utilitarios {
             }
 	}
         
-       
+    // Faz a leitura da planilha de discentes
+    // Cria um mapa no qual a chave é o codigo do docente e o valor é um ponteiro para Docente.
 	map<long, Discente*> LeituraCSV::leDiscentes(){
-        //throws FileNotFoundException, IOException, MatriculaDiscenteRepetidaException {
             ifstream stream(arquivos.getDiscentes());
             
             if (stream.is_open()) {
@@ -171,9 +173,10 @@ namespace utilitarios {
 	}
 
         
-        
+    // Faz a leitura da planilha de producoes cientificas
+    // Relaciona com docente, adicionando as producoes a lista de producoes de cada docente
+    // Cria um mapa no qual a chave é o codigo do docente e o valor é um ponteiro para ProducaoCientifica
 	map<int, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
-//			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
 		
             
             ifstream stream(arquivos.getProducaoCientifica());
@@ -221,9 +224,9 @@ namespace utilitarios {
 	}
 
         
-        
+    // Faz a leitura da planilha de cursos
+    // Cria um mapa no qual a chave é o codigo do curso e o valor é um ponteiro para Curso
 	map<int, Curso*> LeituraCSV::leCursos(){
-//			throws FileNotFoundException, IOException, CodigoCursoRepetidoException, NivelCursoInconsistenteException {
 		
             
             
@@ -265,7 +268,10 @@ namespace utilitarios {
 
 	}
 
-        
+    // Faz a leitura da planilha de aulas
+    // Relaciona com docente, adicionando as aula a lista de aula de cada docente 
+    // e adiciona cada docente a lista docentes do curso em que eles lecionam
+    // Cria um mapa no qual a chave é o codigo da Aula e o valor é um ponteiro para DidaticoAula
 	map<string,DidaticoAula*> LeituraCSV::leDidaticoAulas(map<int, Docente*> &docentes, map<int, Curso*> &cursos){
 		
             
@@ -322,7 +328,10 @@ namespace utilitarios {
 	}
 
         
-        
+    // Faz a leitura da planilha de graduacoes
+    // Relaciona com docente, adicionando as graduacoes a lista de graduacoes de cada docente e 
+    // Linkando o discente com a graduacao
+    // Cria um mapa no qual a chave é o codigo do docente e o valor é um ponteiro para Graduacao
 	map<long, Graduacao*> LeituraCSV::leGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes, map<int, Curso*> &cursos) {
 		
             ifstream stream(arquivos.getOrientacaoGraducao());
@@ -379,7 +388,10 @@ namespace utilitarios {
 	}
 
         
-        
+    // Faz a leitura da planilha de pos-graduacoes
+    // Relaciona com docente, adicionando as graduacoes a lista de pos-graduacoes de cada docente e 
+    // Linkando o discente com a pos-graduacao
+    // Cria um mapa no qual a chave é o codigo do docente e o valor é um ponteiro para PosGraduacao    
 	map<long, PosGraduacao*> LeituraCSV::lePosGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes){
 		
             

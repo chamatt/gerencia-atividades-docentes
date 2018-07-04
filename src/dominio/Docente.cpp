@@ -50,6 +50,36 @@ namespace dominio
         return totalHorasSemanaisAula;
     }
 
+    void Docente::calcularTotalHoras() 
+    {
+        totalHorasSemanaisAula = 0;
+		totalHorasSemanaisOrientacao = 0;
+		totalHorasSemestraisAula = 0;
+
+		for (auto& d : disciplinas) {
+			totalHorasSemanaisAula += d->getCHSemanal();
+			totalHorasSemestraisAula += d->getCHSemestral();
+		}
+		for (auto& g : graduacoes) {
+			totalHorasSemanaisOrientacao += g->getCHSemanal();
+		}
+		for (auto& pg : posGraduacoes) {
+			totalHorasSemanaisOrientacao += pg->getCHSemanal();
+		}
+    }
+
+    void Docente::calcularProducoesQualificadas()
+    {
+        numProdQualificadas = 0;
+		numProdNaoQualificadas = 0;
+		for (auto& prod : producoes) {
+			if (prod->isQualificada())
+				numProdQualificadas++;
+			else
+				numProdNaoQualificadas++;
+		}
+    }
+
     
         void Docente::addListaProducao(ProducaoCientifica* prod) {
 		producoes.push_back(prod);
@@ -83,10 +113,7 @@ namespace dominio
 		return producoes;
 	}
         
-        void Docente::calcularTotalHoras() 
-        {
-
-        }
+        
 
         
 

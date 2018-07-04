@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
             map<long, PosGraduacao*> posGraduacoes; // Matricula do Discente -> PosGraduacao
 
                 
-            // Realização de todas as leituras
+            // Realização de todas as leituras e atribui ao mapa
             LeituraCSV* leitor = new LeituraCSV(arquivos);
             docentes = leitor->leDocentes();
             discentes = leitor->leDiscentes();
@@ -47,12 +47,12 @@ int main(int argc, char** argv) {
             graduacoes = leitor->leGraduacoes(docentes, discentes, cursos);
             posGraduacoes = leitor->lePosGraduacoes(docentes, discentes);
           
-            
+            // Faz as escritas dos arquivos CSV
             EscritaCSV* escritor = new EscritaCSV();
             escritor->escrevePAD(docentes);
             escritor->escreveAlocacao(didaticoAulas);
             escritor->escreveDiscentesProGrad(discentes);
-            //escritor.escreveRHA(cursos);
+            escritor->escreveRHA(cursos);
         } catch (IOException e) {
             cout << e.what();
         } catch (ParseException p) {

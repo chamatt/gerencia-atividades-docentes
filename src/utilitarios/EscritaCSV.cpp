@@ -22,7 +22,8 @@ namespace utilitarios
 
             for(it = docentes.begin();it != docentes.end();it++)
             {
-                
+                it->second->calcularTotalHoras();
+                it->second->calcularProducoesQualificadas();
                 vet.push_back(it->second);
             }
 
@@ -151,7 +152,7 @@ namespace utilitarios
                             
                         }
                     }
-                    sort(itensRelatorio.begin(), itensRelatorio.end());
+                    sort(itensRelatorio.begin(), itensRelatorio.end(),RHA);
                     
                     int tam = (int)itensRelatorio.size();
             

@@ -46,6 +46,8 @@ namespace dominio
             
             
             void calcularTotalHoras();
+
+            void calcularProducoesQualificadas();
             
             void addListaProducao(ProducaoCientifica* prod);
 

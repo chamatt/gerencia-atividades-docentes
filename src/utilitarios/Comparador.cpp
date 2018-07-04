@@ -46,5 +46,24 @@ namespace utilitarios {
          
             return value < 0;
         }
+
+        bool RHA(vector<string> s1, vector<string> d2){
+            int value = stringCompare(s1[0],s2[0]);
+
+            if(value == 0)
+            {
+                int value2 = stringCompare(s1[1],s2[1]0);
+
+                if(value2 == 0)
+                {
+                    int value3 = stringCompare(s1[3],s2[3]);
+                    return value3 < 0;
+                }
+
+                return value2 < 0;
+            }
+
+            return value < 0;
+        }
 }
 
