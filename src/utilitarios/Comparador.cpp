@@ -17,25 +17,36 @@ namespace utilitarios {
             return value < 0;
         }   
 
-        int Comparador::PPG(Discente* d1, Discente* d2) {
-            if (stringCompare(d1->getPosGraduacao()->getNomeDoPrograma(), d2->getPosGraduacao()->getNomeDoPrograma()) == 0) {
-                    if (timeCompare(d1->getPosGraduacao()->getDataDeIngresso(), d2->getPosGraduacao()->getDataDeIngresso()) == 0) {
-                            return stringCompare(d1->getNome(), d2->getNome());
-                    }
+        bool Comparador::PPG(Discente* d1, Discente* d2) {
+            
+            int value = stringCompare(d1->getPosGraduacao()->getNomeDoPrograma(), d2->getPosGraduacao()->getNomeDoPrograma());
+            
+            if (value == 0) 
+            {
+                int value2 = timeCompare(d1->getPosGraduacao()->getDataDeIngresso(), d2->getPosGraduacao()->getDataDeIngresso());
+                
+                 if (value2 == 0) 
+                 {
+                           int value3 = stringCompare(d1->getNome(), d2->getNome());
+                           return value3 < 0;
+                 }
 
-                    if (timeCompare(d1->getPosGraduacao()->getDataDeIngresso(), d2->getPosGraduacao()->getDataDeIngresso()) < 0)
-                            return -1;
-                    else
-                            return 1;
+                return value2 < 0;
             }
 
-            return stringCompare(d1->getPosGraduacao()->getNomeDoPrograma(), d2->getPosGraduacao()->getNomeDoPrograma());
+            return value < 0;
         }
-        int Comparador::Alocacao(DidaticoAula* d1, DidaticoAula* d2) {
-            if (stringCompare(d1->getDocente()->getNome(), d2->getDocente()->getNome()) == 0)
-                    return stringCompare(d1->getCodigo(), d2->getCodigo());
-
-            return stringCompare(d1->getDocente()->getNome(), d2->getDocente()->getNome());
+        bool Comparador::Alocacao(DidaticoAula* d1, DidaticoAula* d2) {
+            
+            int value = stringCompare(d1->getDocente()->getNome(), d2->getDocente()->getNome());
+            
+            if (value == 0)
+            {
+                int value2 = stringCompare(d1->getCodigo(), d2->getCodigo());
+                return value2 < 0;
+            }
+         
+            return value < 0;
         }
 }
 

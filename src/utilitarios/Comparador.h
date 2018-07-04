@@ -16,8 +16,8 @@ namespace utilitarios{
         
             int timeCompare(string date1, string date2);
             bool PAD(Docente* d1, Docente* d2);
-            int PPG(Discente* d1, Discente* d2);
-            int Alocacao(DidaticoAula* d1, DidaticoAula* d2);
+            bool PPG(Discente* d1, Discente* d2);
+            bool Alocacao(DidaticoAula* d1, DidaticoAula* d2);
 
     }
 }
