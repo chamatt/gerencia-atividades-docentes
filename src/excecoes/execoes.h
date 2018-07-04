@@ -40,22 +40,6 @@ namespace excecoes {
         }
     };
 
-    class ClassNotFoundException : public exception
-    {
-    private:
-        string msg;
-
-    public:
-        ClassNotFoundException(string message = "") : msg(message)
-        {
-        }
-
-        const char * what() const throw()
-        {
-            return msg.c_str();
-        }
-    };
-
     class CodigoDocenteRepetidoException : public exception
     {
     private:
