@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <map>
+#include <iostream>
 #include "utilitarios/Arquivos.h"
 #include "dominio/Docente.h"
 #include "dominio/Discente.h"
@@ -10,67 +11,75 @@
 #include "dominio/Orientacao.h"
 #include "dominio/PosGraduacao.h"
 #include "dominio/ProducaoCientifica.h"
+#include "utilitarios/EscritaCSV.h"
+#include "utilitarios/LeituraCSV.h"
+#include "excecoes/execoes.h"
 
 using namespace std;
 using namespace utilitarios;
 using namespace dominio;
+using namespace excecoes;
 
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-    
-            Arquivos* arquivos = new Arquivos(argc, argv);
+        
+        try{
+            Arquivos arquivos(argc, argv);
+            map<int, Docente*> docentes; // Codigo do docente -> Docente
+            map<long, Discente*> discentes; // Matricula do discente -> Discente
+            map<int, ProducaoCientifica*> producoesCientificas; // Codigo do docente -> Prod. Cientifica
+            map<int, Curso*> cursos; // Codigo do curso -> Curso
+            map<string, DidaticoAula*> didaticoAulas; // Codigo da aula -> Aula
+            map<long, Graduacao*> graduacoes; // Matricula do Discente -> Graduacao
+            map<long, PosGraduacao*> posGraduacoes; // Matricula do Discente -> PosGraduacao
 
-//            LeituraCSV leitor;
-            map<int, Docente*> docentes; // Codigo do docente
-            map<long, Discente*> discentes; // Matricula do discente
-            map<int, ProducaoCientifica*> producoesCientificas; // codigo do docente
-            map<int, Curso*> cursos; // Codigo do curso
-            map<string, DidaticoAula*> didaticoAulas; // Codigo da aula
-            map<long, Graduacao*> graduacoes; // matricula do discente
-            map<long, PosGraduacao*> posGraduacoes; // matricula do discente
-//
-//
-//            leitor = new LeituraCSV(arquivos);
-//            docentes = leitor.leDocentes();
-//            discentes = leitor.leDiscentes();
-//            producoesCientificas = leitor.leProducoesCientificas(docentes);
-//            cursos = leitor.leCursos();
-//            didaticoAulas = leitor.leDidaticoAulas(docentes, cursos);
-//            graduacoes = leitor.leGraduacoes(docentes, discentes, cursos);
-//            posGraduacoes = leitor.lePosGraduacoes(docentes, discentes);
-//
-//            Relacionamentos relacionamentos = new Relacionamentos();
-//
-//            relacionamentos.ConectaInformacoesDocente(docentes, producoesCientificas, graduacoes, posGraduacoes,
-//                            didaticoAulas);
-//            relacionamentos.ConectaInformacoesDiscente(discentes, posGraduacoes);
-//            relacionamentos.ConectaInformacoesCurso(cursos, didaticoAulas);
-//
-//            EscritaCSV escritor = new EscritaCSV();
-//            escritor.escrevePAD(docentes);
-//            escritor.escreveAlocacao(didaticoAulas);
-//            escritor.escreveDiscentesProGrad(discentes);
-//            escritor.escreveRHA(cursos);
-//        }
-//        } catch (IOException e) {
-//                cout << "Erro de I/O";
-//        } catch (java.text.ParseException p) {
-//                Scout << "Erro de formatação";
-//        } catch (CodigoDocenteRepetidoException cd) {
-//        } catch (MatriculaDiscenteRepetidaException md) {
-//        } catch (CodigoCursoRepetidoException cr) {
-//        } catch (CodigoDisciplinaRepetidoException cdr) {
-//        } catch (CodigoDocenteEmDisciplinaInvalidoException cdi) {
-//        } catch (CodigoDocenteEmOrientacaoInvalidoException oi) {
-//        } catch (CodigoDocenteEmPublicacaoInvalidoException pi) {
-//        } catch (CodigoCursoEmOrientacaoInvalidoException ci) {
-//        } catch (CodigoCursoEmDisciplinaInvalidoException di) {
-//        } catch (NivelCursoInconsistenteException ni) {
-//        } catch (DataIngressoFuturaException df) {
-//        }
+                
+            // Realização de todas as leituras
+            LeituraCSV leitor(arquivos);
+            docentes = leitor.leDocentes();
+            discentes = leitor.leDiscentes();
+            producoesCientificas = leitor.leProducoesCientificas(docentes);
+            cursos = leitor.leCursos();
+            didaticoAulas = leitor.leDidaticoAulas(docentes, cursos);
+            graduacoes = leitor.leGraduacoes(docentes, discentes, cursos);
+            posGraduacoes = leitor.lePosGraduacoes(docentes, discentes);
+          
+            
+            EscritaCSV escritor();
+            escritor.escrevePAD(docentes);
+            escritor.escreveAlocacao(didaticoAulas);
+            escritor.escreveDiscentesProGrad(discentes);
+            escritor.escreveRHA(cursos);
+        } catch (IOException e) {
+            cout << e.what();
+        } catch (ParseException p) {
+            cout << p.what();
+        } catch (CodigoDocenteRepetidoException cd) {
+            cout << cd.what();
+        } catch (MatriculaDiscenteRepetidaException md) {
+            cout << md.what();
+        } catch (CodigoCursoRepetidoException cr) {
+            cout << cr.what();
+        } catch (CodigoDisciplinaRepetidoException cdr) {
+            cout << cdr.what();
+        } catch (CodigoDocenteEmDisciplinaInvalidoException cdi) {
+            cout << cdi.what();
+        } catch (CodigoDocenteEmOrientacaoInvalidoException oi) {
+            cout << oi.what();
+        } catch (CodigoDocenteEmPublicacaoInvalidoException pi) {
+            cout << pi.what();
+        } catch (CodigoCursoEmOrientacaoInvalidoException ci) {
+            cout << ci.what();
+        } catch (CodigoCursoEmDisciplinaInvalidoException di) {
+            cout << di.what();
+        } catch (NivelCursoInconsistenteException ni) {
+            cout << ni.what();
+        } catch (DataIngressoFuturaException df) {
+            cout << df.what();
+        }
     
     
     
