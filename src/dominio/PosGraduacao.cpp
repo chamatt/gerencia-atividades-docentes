@@ -4,7 +4,7 @@
 namespace dominio
 {
 
-    PosGraduacao(Docente* docente, Discente* Discente, string dataDeIngresso,string nomeDoPrograma, int CHSemanal) {
+    PosGraduacao::PosGraduacao(Docente* docente, Discente* discente, string dataDeIngresso, string nomeDoPrograma, int CHSemanal) {
         this->dataDeIngresso=dataDeIngresso;
         this->nomeDoPrograma=nomeDoPrograma;
         this->CHSemanal=CHSemanal;

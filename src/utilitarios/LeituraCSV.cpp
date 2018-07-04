@@ -45,65 +45,65 @@ namespace utilitarios {
 		return propriedades;
 	}
 
-	void LeituraCSV::checaCodigoDocenteRepetido(map<int, Docente*> &docentes, Docente* docente){
-                if(docentes.count(docente->getCodigo()) > 0){
-                    throw CodigoDocenteRepetidoException(docente->getCodigo());
+	void LeituraCSV::checaCodigoDocenteRepetido(map<int, Docente*> &docentes, int codigoDoDocente){
+                if(docentes.count(codigoDoDocente) > 0){
+                    throw CodigoDocenteRepetidoException(codigoDoDocente);
                 }
 	}
 
-	void LeituraCSV::checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, Discente* discente){
-            if(discentes.count(discente->getMatricula()) > 0){
-                throw MatriculaDiscenteRepetidaException(discente->getMatricula());
+	void LeituraCSV::checaMatriculaDiscenteRepetida(map<long, Discente*> &discentes, long matricula){
+            if(discentes.count(matricula) > 0){
+                throw MatriculaDiscenteRepetidaException(matricula);
             }
 	}
 
-	void LeituraCSV::checaCodigoCursoRepetido(map<int, Curso*> &cursos, Curso* curso) {
-		if(cursos.count(curso->getCodigo()) > 0){
-                    throw CodigoCursoRepetidoException(curso->getCodigo());
+	void LeituraCSV::checaCodigoCursoRepetido(map<int, Curso*> &cursos, int codigoDoCurso) {
+		if(cursos.count(codigoDoCurso) > 0){
+                    throw CodigoCursoRepetidoException(codigoDoCurso);
                 }
 	}
 
-	void LeituraCSV::checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, DidaticoAula* disciplina){
-                if(disciplinas.count(disciplina->getCodigo()) > 0){
-                    throw CodigoDisciplinaRepetidoException(disciplina->getCodigo());
+	void LeituraCSV::checaCodigoDisciplinaRepetido(map<string, DidaticoAula*> &disciplinas, string codigoDaDisciplina){
+                if(disciplinas.count(codigoDaDisciplina) > 0){
+                    throw CodigoDisciplinaRepetidoException(codigoDaDisciplina);
                 }
 	}
 
-	void LeituraCSV::checaDocenteInvalidoEmDisciplina(map<int, Docente*> &docentes, DidaticoAula* disc){
+	void LeituraCSV::checaDocenteInvalidoEmDisciplina(map<int, Docente*> &docentes, int codigoDoDocente, string nomeDaDisciplina){
             
-            if(docentes.count(disc->getDocente()->getCodigo() > 0)) return;
+            if(docentes.count(codigoDoDocente) > 0) return;
             
-            throw CodigoDocenteEmDisciplinaInvalidoException(disc->getNome(), disc->getDocente()->getCodigo());
+            throw CodigoDocenteEmDisciplinaInvalidoException(nomeDaDisciplina, codigoDoDocente);
 		
 	}
 
-	void LeituraCSV::checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, Orientacao* orientacao){
+	void LeituraCSV::checaDocenteEmOrientacao(map<int, Docente*> &docentes, map<long, Discente*> &discentes, int codigoDoDocente, int matriculaDoDiscente){
 		
-                if(docentes.count(orientacao->getDocente()->getCodigo()) > 0) return;
+                if(docentes.count(codigoDoDocente) > 0) return;
 
-		string nome = discentes[orientacao->getDiscente()->getMatricula()]->getNome();;
+		string nome = discentes[matriculaDoDiscente]->getNome();;
 
-		throw CodigoDocenteEmOrientacaoInvalidoException(nome, orientacao->getDocente()->getCodigo());
+		throw CodigoDocenteEmOrientacaoInvalidoException(nome, matriculaDoDiscente);
 	}
 
-	void LeituraCSV::checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, ProducaoCientifica* prod){
-                if(docentes.count(prod->getDocente()->getCodigo()) > 0) return;
+	void LeituraCSV::checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, int codigoDoDocente, string tituloDaProducao){
+                if(docentes.count(codigoDoDocente) > 0) return;
 
-		throw CodigoDocenteEmPublicacaoInvalidoException(prod->getTitulo(), prod->getDocente()->getCodigo());
+		throw CodigoDocenteEmPublicacaoInvalidoException(tituloDaProducao, codigoDoDocente);
 	}
 
-	void LeituraCSV::checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, Graduacao* grad){
-            if(cursos.count(grad->getCurso()->getCodigo()) > 0) return;
+	void LeituraCSV::checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, int codigoDoCurso, long matriculaDoDiscente){
+            if(cursos.count(codigoDoCurso) > 0) return;
 
-            string nome = discentes[grad->getDiscente()->getMatricula()]->getNome();
+            string nome = discentes[matriculaDoDiscente]->getNome();
 
-            throw CodigoCursoEmOrientacaoInvalidoException(nome, grad->getCurso()->getCodigo());
+            throw CodigoCursoEmOrientacaoInvalidoException(nome, codigoDoCurso);
 	}
 
-	void LeituraCSV::checaCursoEmDisciplina(map<int, Curso*> &cursos, DidaticoAula* disc){
-            if(cursos.count(disc->getCurso()->getCodigo()) > 0) return;
+	void LeituraCSV::checaCursoEmDisciplina(map<int, Curso*> &cursos, int codigoDoCurso, string nomeDaDisciplina){
+            if(cursos.count(codigoDoCurso) > 0) return;
             
-            throw CodigoCursoEmDisciplinaInvalidoException(disc->getNome(), disc->getCurso()->getCodigo());
+            throw CodigoCursoEmDisciplinaInvalidoException(nomeDaDisciplina, codigoDoCurso);
 	}
 
 	void LeituraCSV::checaCurso(Curso* curso, bool pg) {
@@ -111,15 +111,15 @@ namespace utilitarios {
 			throw NivelCursoInconsistenteException(curso->getNome(), curso->getCodigo());
 	}
 
-	void LeituraCSV::checaData(map<long, Discente*> discentes, PosGraduacao* pg){
+	void LeituraCSV::checaData(map<long, Discente*> discentes, string dataDeIngresso, long matriculaDoDiscente){
             time_t now = time(0);
             string dataAtual =  formatDate(now, DATE_FORMAT_PT_BR_SHORT);
             string nome = "";
             Discente* a;
-            if (Comparador::timeCompare(dataAtual, pg->getDataDeIngresso()) < 0) {
-                a = (discentes[pg->getDiscente()->getMatricula()]);
+            if (Comparador::timeCompare(dataAtual, dataDeIngresso) < 0) {
+                a = (discentes[matriculaDoDiscente]);
                 nome = a->getNome();
-                throw DataIngressoFuturaException(nome, pg->getDataDeIngresso());
+                throw DataIngressoFuturaException(nome, dataDeIngresso);
             }
 	}
         
@@ -144,8 +144,10 @@ namespace utilitarios {
                     string nome = propriedades[1];
                     string departamento = propriedades[2];
 
+                    checaCodigoDocenteRepetido(docentes, codigo);
+                    
                     Docente* docente = new Docente(codigo, nome, departamento);
-                    checaCodigoDocenteRepetido(docentes, docente);
+                    
                     docentes[codigo] = docente;
                 }
                 stream.close();
@@ -166,7 +168,7 @@ namespace utilitarios {
 
         
         
-	map<long, Discente> LeituraCSV::leDiscentes(){
+	map<long, Discente*> LeituraCSV::leDiscentes(){
         //throws FileNotFoundException, IOException, MatriculaDiscenteRepetidaException {
             ifstream stream(arquivos.getDiscentes());
             
@@ -187,11 +189,14 @@ namespace utilitarios {
                     }
                     string nome = propriedades[1];
 
+                    checaMatriculaDiscenteRepetida(discentes, matricula);
+                    
                     Discente* discente = new Discente(matricula, nome, codigoCurso);
-                    checaMatriculaDiscenteRepetida(discentes, discente);
+                    
                     discentes[matricula] = discente;
                 }
                 stream.close();
+                
                 return discentes;
             }
             else {  
@@ -202,13 +207,13 @@ namespace utilitarios {
 
         
         
-	map<int, ProducaoCientifica> LeituraCSV::leProducoesCientificas(map<int, Docente> docentes){
+	map<int, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
 //			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
 		
             
             ifstream stream(arquivos.getProducaoCientifica());
             if (stream.is_open()) {
-                map<int, ProducaoCientifica*> producoesCientificas;
+                map<long, ProducaoCientifica*> producoesCientificas;
                 string descartavel;
                 getline(stream, descartavel);
                 while (stream.good())
@@ -225,10 +230,21 @@ namespace utilitarios {
                     string tituloDaPublicacao = propriedades[1];
                     bool qualificada = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
                     
-                    ProducaoCientifica* producaoCientifica = new ProducaoCientifica(codigoDocente, tituloDaPublicacao,
+                    
+                    checaDocenteEmProducaoCientifica(docentes, codigoDocente, tituloDaPublicacao);
+                    
+                    
+                    //Instanciamento da producao científica, conexao com docente, e adicionar no mapa
+                    ProducaoCientifica* producaoCientifica = new ProducaoCientifica(docentes[codigoDocente], tituloDaPublicacao,
 						qualificada);
-                    checaDocenteEmProducaoCientifica(docentes, producaoCientifica);
                     producoesCientificas[codigoDocente] = producaoCientifica;
+                    
+                    
+                    // Conexao do docente com producao
+                    docentes[codigoDocente]->addListaProducao(producaoCientifica);
+                    
+                    
+                    
                 }
                 stream.close();
                 return producoesCientificas;
@@ -241,7 +257,7 @@ namespace utilitarios {
 
         
         
-	map<int, Curso> LeituraCSV::leCursos(){
+	map<int, Curso*> LeituraCSV::leCursos(){
 //			throws FileNotFoundException, IOException, CodigoCursoRepetidoException, NivelCursoInconsistenteException {
 		
             
@@ -263,16 +279,14 @@ namespace utilitarios {
                         throw ParseException();
                     }
                     string nome = propriedades[1];
-                    bool graduacao = (propriedades.size() > 2 && propriedades[2].equals("X")) ? true : false;
-                    bool posGraduacao = (propriedades.size() > 3 && propriedades[3].equals("X")) ? true : false;
+                    bool graduacao = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
+                    bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
+                    
+                    checaCodigoCursoRepetido(cursos, codigo);
                     
                     Curso* curso = new Curso(codigo, nome, graduacao);
-                    checaCodigoCursoRepetido(cursos, curso);
-                    checaCurso(curso, posGraduacao);
                     cursos[codigo] = curso;
                     
-                    
-                    // Conexao com docentes
                     
                     
                     
@@ -317,14 +331,14 @@ namespace utilitarios {
                     string nome = propriedades[1];
                     
                     
+                    //Checa as Excecoes
+                    checaCodigoDisciplinaRepetido(didaticoAulas, codigo);
+                    checaDocenteInvalidoEmDisciplina(docentes, codigoDocente, nome);
+                    checaCursoEmDisciplina(cursos, codigoCurso, nome);
+                    
                     // Instancia uma aula e adiciona no mapa de aulas
-                    DidaticoAula* didaticoAula = new DidaticoAula(codigo, nome, docentes[codigoDocente], cargaSemanal, cargaSemestral,
-                                    cursos[codigoCurso]);
-                    checaCodigoDisciplinaRepetido(didaticoAulas, didaticoAula);
-                    checaDocenteInvalidoEmDisciplina(didaticoAula, docentes);
-                    checaCursoEmDisciplina(cursos, didaticoAula);
+                    DidaticoAula* didaticoAula = new DidaticoAula(codigo, nome, docentes[codigoDocente] cargaSemanal, cargaSemestral, cursos[codigoCurso]);
                     didaticoAulas[codigo] = didaticoAula;
-                            
                             
                     //Conexao com docente
                     docentes[codigoDocente]->addListaDidaticoAula(didaticoAula);
@@ -344,7 +358,7 @@ namespace utilitarios {
 
         
         
-	map<Graduacao> LeituraCSV::leGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes, map<int, Curso*> &cursos) {
+	map<long, Graduacao*> LeituraCSV::leGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes, map<int, Curso*> &cursos) {
 		
             ifstream stream(arquivos.getOrientacaoGraducao());
             
@@ -371,10 +385,12 @@ namespace utilitarios {
                     }
 
                     
+                    checaDocenteEmOrientacao(docentes, discentes, codigoDocente, matriculaDiscente);
+                    checaCursoEmOrientacao(cursos, discentes, codigoCurso, matriculaDiscente);
+                    
+                    
                     // Instancia a graduacao com suas propriedades e adiciona ao mapa de graduacoes
                     Graduacao* graduacao = new Graduacao(docentes[codigoDocente], discentes[matriculaDiscente], cursos[codigoCurso], cargaSemanal);
-                    checaDocenteEmOrientacao(docentes, discentes, graduacao);
-                    checaCursoEmOrientacao(cursos, discentes, graduacao);
                     graduacoes[matriculaDiscente] = graduacao;
                     
                     // Conexao com Docente
@@ -399,7 +415,7 @@ namespace utilitarios {
 
         
         
-	map<PosGraduacao> LeituraCSV::lePosGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes){
+	map<long, PosGraduacao*> LeituraCSV::lePosGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes){
 		
             
             ifstream stream(arquivos.getOrientacaoPos());
@@ -413,7 +429,7 @@ namespace utilitarios {
                     vector<string> propriedades = leLinha(stream);
                     
                     int codigoDocente;
-                    int matriculaDiscente;
+                    long matriculaDiscente;
                     int cargaSemanal;
                     
                     try {
@@ -427,13 +443,14 @@ namespace utilitarios {
                     string programa = propriedades[3];
                     
                     
+                    //Checa as excecoes
+                    checaDocenteEmOrientacao(docentes, discentes, codigoDocente, matriculaDiscente);
+                    checaData(discentes, date, matriculaDiscente);
+                    
                     //Instanciamento da posGraduacao nova e logo em seguida é adicionada no mapa
                     PosGraduacao* posGraduacao = new PosGraduacao(docentes[codigoDocente], discentes[matriculaDiscente], date, programa,
                                     cargaSemanal);
-                    checaDocenteEmOrientacao(docentes, discentes, posGraduacao);
-                    checaData(discentes, posGraduacao);
                     posGraduacoes[matriculaDiscente] = posGraduacao;
-                    
                     
                     //Conexoes com docente
                     docentes[codigoDocente]->addListaPosGraduacao(posGraduacao);
