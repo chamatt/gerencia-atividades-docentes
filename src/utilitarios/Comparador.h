@@ -7,6 +7,7 @@
 #include "../dominio/DidaticoAula.h"
 
 using namespace dominio;
+using namespace cpp_util;
 
 
 #ifndef COMPARADOR_H

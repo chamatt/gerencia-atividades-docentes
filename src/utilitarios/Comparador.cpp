@@ -1,7 +1,5 @@
 #include "Comparador.h"
 
-using namespace cpp_util;
-
 
 namespace utilitarios {
     

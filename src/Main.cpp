@@ -38,21 +38,21 @@ int main(int argc, char** argv) {
 
                 
             // Realização de todas as leituras
-            LeituraCSV leitor(arquivos);
-            docentes = leitor.leDocentes();
-            discentes = leitor.leDiscentes();
-            producoesCientificas = leitor.leProducoesCientificas(docentes);
-            cursos = leitor.leCursos();
-            didaticoAulas = leitor.leDidaticoAulas(docentes, cursos);
-            graduacoes = leitor.leGraduacoes(docentes, discentes, cursos);
-            posGraduacoes = leitor.lePosGraduacoes(docentes, discentes);
+            LeituraCSV* leitor = new LeituraCSV(arquivos);
+            docentes = leitor->leDocentes();
+            discentes = leitor->leDiscentes();
+            producoesCientificas = leitor->leProducoesCientificas(docentes);
+            cursos = leitor->leCursos();
+            didaticoAulas = leitor->leDidaticoAulas(docentes, cursos);
+            graduacoes = leitor->leGraduacoes(docentes, discentes, cursos);
+            posGraduacoes = leitor->lePosGraduacoes(docentes, discentes);
           
             
-            EscritaCSV escritor();
-            escritor.escrevePAD(docentes);
-            escritor.escreveAlocacao(didaticoAulas);
-            escritor.escreveDiscentesProGrad(discentes);
-            escritor.escreveRHA(cursos);
+            EscritaCSV* escritor = new EscritaCSV();
+            escritor->escrevePAD(docentes);
+            escritor->escreveAlocacao(didaticoAulas);
+            escritor->escreveDiscentesProGrad(discentes);
+            //escritor.escreveRHA(cursos);
         } catch (IOException e) {
             cout << e.what();
         } catch (ParseException p) {

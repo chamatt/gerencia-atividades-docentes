@@ -2,9 +2,6 @@
 #define LEITURACSV_H
 
 
-#include "LeituraCSV.h"
-#include "../utilitarios/Arquivos.h"
-#include "../utilitarios/Comparador.h"
 #include "../excecoes/execoes.h"
 #include "../dominio/Docente.h"
 #include "../dominio/Discente.h"
@@ -17,7 +14,12 @@
 #include "../dominio/ProducaoCientifica.h"
 #include "../professor/DateUtils.h"
 #include "../professor/NumPunctPTBR.h"
-#include "../dominio/Orientacao.h"
+#include "../professor/Tokenizer.h"
+#include "../professor/StringUtils.h"
+#include "../professor/NumberUtils.h"
+#include "Arquivos.h"
+#include "Comparador.h"
+#include <fstream>
 #include <map>
 
 
@@ -48,14 +50,12 @@ namespace utilitarios {
 
     public:
             LeituraCSV(Arquivos& arquivos);
-
-            virtual ~LeituraCSV();
-
+            
             map<int, Docente*> leDocentes();
 
             map<long, Discente*> leDiscentes();
 
-            map<long, ProducaoCientifica*> leProducoesCientificas(map<int, Docente*> &docentes);
+            map<int, ProducaoCientifica*> leProducoesCientificas(map<int, Docente*> &docentes);
 
             map<int, Curso*> leCursos();
 

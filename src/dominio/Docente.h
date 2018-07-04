@@ -45,6 +45,8 @@ namespace dominio
             int getNumProducoesNaoQualificadas();
             
             
+            void calcularTotalHoras();
+            
             void addListaProducao(ProducaoCientifica* prod);
 
             void addListaGraduacao(Graduacao* grad);

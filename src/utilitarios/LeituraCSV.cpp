@@ -1,30 +1,4 @@
 #include "LeituraCSV.h"
-#include "../utilitarios/Arquivos.h"
-#include "../utilitarios/Comparador.h"
-#include "../excecoes/execoes.h"
-#include "../dominio/Docente.h"
-#include "../dominio/Discente.h"
-#include "../dominio/Atividade.h"
-#include "../dominio/Curso.h"
-#include "../dominio/DidaticoAula.h"
-#include "../dominio/Graduacao.h"
-#include "../dominio/Orientacao.h"
-#include "../dominio/PosGraduacao.h"
-#include "../dominio/ProducaoCientifica.h"
-#include "../professor/DateUtils.h"
-#include "../professor/NumPunctPTBR.h"
-#include "../professor/NumberUtils.h"
-#include "../professor/StringUtils.h"
-#include "../dominio/Orientacao.h"
-#include <fstream>
-
-using namespace std;
-using namespace excecoes;
-using namespace dominio;
-using namespace cpp_util;
-using namespace utilitarios;
-
-
 
 namespace utilitarios {
     
@@ -198,13 +172,13 @@ namespace utilitarios {
 
         
         
-	map<long, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
+	map<int, ProducaoCientifica*> LeituraCSV::leProducoesCientificas(map<int, Docente*>& docentes){
 //			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
 		
             
             ifstream stream(arquivos.getProducaoCientifica());
             if (stream.is_open()) {
-                map<long, ProducaoCientifica*> producoesCientificas;
+                map<int, ProducaoCientifica*> producoesCientificas;
                 string descartavel;
                 getline(stream, descartavel);
                 while (stream.good())

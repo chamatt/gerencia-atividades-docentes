@@ -6,6 +6,10 @@ using namespace excecoes;
 namespace utilitarios
 {
 
+    EscritaCSV::EscritaCSV() {
+
+    }
+
     void EscritaCSV::escrevePAD(map<int, Docente*> &docentes) 
     {
         ofstream out ("1-pad.csv");

@@ -21,6 +21,7 @@ namespace utilitarios
     class EscritaCSV 
     {
         public:
+            EscritaCSV();
             void escrevePAD(map< int, Docente*> &docentes);
             void escreveAlocacao(map <string,DidaticoAula*> &disc);
             void escreveDiscentesProGrad(map <long,Discente*> &discentes);

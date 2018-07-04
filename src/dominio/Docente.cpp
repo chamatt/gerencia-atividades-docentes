@@ -82,6 +82,13 @@ namespace dominio
 	vector<ProducaoCientifica*> Docente::getProducoes() {
 		return producoes;
 	}
+        
+        void Docente::calcularTotalHoras() 
+        {
+
+        }
+
+        
 
 
      
