@@ -24,6 +24,7 @@ namespace utilitarios
             void escrevePAD(map< int, Docente*> &docentes);
             void escreveAlocacao(map <string,DidaticoAula*> &disc);
             void escreveDiscentesProGrad(map <long,Discente*> &discentes);
+            void escreveRHA(map<int, Curso*>& cursos);
     };
 }
 
