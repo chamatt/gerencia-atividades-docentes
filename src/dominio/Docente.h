@@ -60,6 +60,8 @@ namespace dominio
             vector<PosGraduacao*> getPosGraduacoes();
 
             vector<ProducaoCientifica*> getProducoes();
+            
+            
 
             
         

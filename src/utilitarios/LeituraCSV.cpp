@@ -158,16 +158,7 @@ namespace utilitarios {
             }
 	}
         
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
+       
 	map<long, Discente*> LeituraCSV::leDiscentes(){
         //throws FileNotFoundException, IOException, MatriculaDiscenteRepetidaException {
             ifstream stream(arquivos.getDiscentes());

@@ -15,7 +15,10 @@ namespace utilitarios
             vector <Docente*> vet;
 
             for(it = docentes.begin();it != docentes.end();it++)
+            {
+                
                 vet.push_back(it->second);
+            }
 
             sort(vet.begin(),vet.end(),PAD);
 
