@@ -1,4 +1,7 @@
 #include "EscritaCSV.h"
+#include "../excecoes/execoes.h"
+
+using namespace excecoes;
 
 namespace utilitarios
 {
@@ -6,7 +9,6 @@ namespace utilitarios
     void EscritaCSV::escrevePAD(map<int, Docente*> &docentes) 
     {
         ofstream out ("1-pad.csv");
-        out.exceptions(std::ifstream::failbit | std::ifstream::badbit);
         if(out.is_open())
         {
             out << "Docente;Departamento;Horas Semanais Aula;Horas Semestrais Aula;Horas Semanais Orientação;Produções Qualificadas;Produções Não Qualificadas" << endl;
@@ -31,9 +33,13 @@ namespace utilitarios
                 out << vet[i]->getNumProducoesQualificadas() << ";";
                 out << vet[i]->getNumProducoesNaoQualificadas() << endl;
             }
+            out.close();
+        }
+        else {
+            throw IOException();
         }
         
-        out.close();
+        
     } 
         void EscritaCSV::escreveAlocacao(map<string, DidaticoAula*>& disc) 
         {
@@ -61,8 +67,12 @@ namespace utilitarios
                         out << vet[i]->getNome() << ";";
                         out << vet[i]->getCHSemestral() << endl;
                     }
+                    out.close();
                 }
-                 out.close();
+                else {
+                    throw IOException();
+                }
+                 
         }
             void EscritaCSV::escreveDiscentesProGrad(map<long, Discente*> &discentes) 
             {
@@ -91,13 +101,72 @@ namespace utilitarios
                         out << discentePPG[i]->getMatricula() << ";";
                         out << discentePPG[i]->getNome() << endl;
                     }
+                    out.close();
                  }
-                  out.close();
+                 else {
+                    throw IOException();
+                }
+                  
             }
 
 
     
-    
+    void EscritaCSV::escreveRHA(map<int, Curso*>& cursos)  {
+		
+                ofstream out ("2-rha.csv");
+                if(out.is_open())
+                {
+                    out << "Departamento;Docente;Cód. Curso;Curso;Horas Semestrais Aula" << endl;
+                    vector< vector<string> > itensRelatorio;
+                    for(auto curso : cursos){
+                        vector<Docente*> listaDocentes = curso.second->getListaDocentes();
+                        for(auto docente : listaDocentes){
+                            string nomeDoDepartamento = "";
+                            string nomeDoDocente = "";
+                            int totalHoras = 0;
+                            string codigoDoCurso = to_string(curso.second->getCodigo());
+                            string nomeDoCurso = curso.second->getNome();
+                            for(auto aula : docente->getDisciplinas()){
+                                if(aula->getCurso()->getCodigo() == curso.second->getCodigo()){
+                                    totalHoras += aula->getCHSemestral();
+                                    nomeDoDepartamento = aula->getDocente()->getDepartamento();
+                                    nomeDoDocente = aula->getDocente()->getNome();
+                                    
+                                    vector<string> temp;
+                                    temp.push_back(nomeDoDepartamento);
+                                    temp.push_back(nomeDoDocente);
+                                    temp.push_back(codigoDoCurso);
+                                    temp.push_back(nomeDoCurso);
+                                    temp.push_back(to_string(totalHoras));
+                                    itensRelatorio.push_back(temp);
+                                }
+                            }
+                            
+                        }
+                    }
+                    sort(itensRelatorio.begin(), itensRelatorio.end());
+                    
+                    int tam = (int)itensRelatorio.size();
+            
+                    for(int i=0;i<tam;i++)
+                    {
+                        out << itensRelatorio[i][0] << ";";
+                        out << itensRelatorio[i][1] << ";";
+                        out << itensRelatorio[i][2] << ";";
+                        out << itensRelatorio[i][3] << ";";
+                        out << itensRelatorio[i][4] << ";";
+                        out << itensRelatorio[i][5] << ";" << endl;
+                    }
+                    out.close();
+                    
+                    
+                }
+                else {
+                    throw IOException();
+                }
+                
+		
+	}
     
     
 
