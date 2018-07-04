@@ -10,6 +10,7 @@ SRC      :=                      \
 	$(wildcard src/dominio/*.cpp) \
 	$(wildcard src/excecoes/*.cpp) \
 	$(wildcard src/utilitarios/*.cpp) \
+	$(wildcard src/professor/*.cpp) \
 	$(wildcard src/*.cpp)         \
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)

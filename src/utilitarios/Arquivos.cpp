@@ -6,6 +6,9 @@ namespace utilitarios {
 
     Arquivos::~Arquivos() {
     }
+
+     Arquivos::Arquivos() {
+    }
     
     Arquivos::Arquivos(int argc, char* argv[]) {
             for (int i = 0; i < argc; i++) {

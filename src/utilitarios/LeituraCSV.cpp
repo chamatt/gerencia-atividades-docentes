@@ -10,9 +10,9 @@ namespace utilitarios {
         
 	vector<string> LeituraCSV::leLinha(ifstream& sc) {
 		string linha;
-                getline(sc, linha);
+        getline(sc, linha);
 		Tokenizer tok(linha, ';');
-                vector<string> propriedades = tok.remaining();
+        vector<string> propriedades = tok.remaining();
 		for(int i = 0; i < (int) propriedades.size(); i++) {
                     propriedades[i] = trim(propriedades[i]);
 		}
