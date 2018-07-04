@@ -8,6 +8,7 @@ using namespace std;
 namespace dominio
 {
   class PosGraduacao;
+  class Graduacao;
   
   class Discente   
     {  
@@ -15,6 +16,7 @@ namespace dominio
         long matricula;  
         Curso* curso;
         PosGraduacao* posGraduacao;
+        Graduacao* graduacao;
           
         public:  
             Discente(long matricula, string nome);  
@@ -22,6 +24,9 @@ namespace dominio
             string getNome();  
             Curso* getCurso();  
             PosGraduacao* getPosGraduacao();
+            Graduacao* getGraduacao();
+            void setPosGraduacao(PosGraduacao* posGraduacao);
+            void setGraduacao(Graduacao* graduacao);
             
             
 	/*void addListaProducao(ProducaoCientifica prod);

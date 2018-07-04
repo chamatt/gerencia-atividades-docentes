@@ -15,9 +15,11 @@ namespace dominio
         string dataDeIngresso;
 
         public:
-            PosGraduacao(int CHSemanal,string dataDeIngresso,string nomeDoPrograma);
+            PosGraduacao(Docente* docente, Discente* Discente,
+                    string dataDeIngresso,string nomeDoPrograma, int CHSemanal);
             string getNomeDoPrograma();
             string getDataDeIngresso();
+            
     };
 }
 

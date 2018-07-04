@@ -22,12 +22,7 @@ namespace dominio
             string getNome();
             bool isGraduacao();
             vector <Docente*> getListaDocentes();
-            
-            /*public void addListaDocentes(Docente docente) {
-		if (!docentes.contains(docente))
-			docentes.add(docente);
-	}
-            */
+            void addListaDocentes(Docente* docente);
     };
 }
 

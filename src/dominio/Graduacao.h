@@ -7,10 +7,13 @@ namespace dominio
 {
     class Graduacao: public Orientacao {
         Curso* curso;
+        int CHSemanal;
     
     public:
-        Graduacao(int CHSemanal);
+        Graduacao(Docente* docente, Discente* discente, Curso* curso, int CHSemanal);
         Curso* getCurso();
+        void setCurso(Curso* curso);
+        int getCHSemanal();
     };
     
 }

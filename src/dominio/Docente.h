@@ -27,7 +27,12 @@ namespace dominio
              int totalHorasSemanaisOrientacao = 0;
              int numProdQualificadas = 0;
              int numProdNaoQualificadas = 0;
-
+             vector<DidaticoAula*> disciplinas;
+             vector<Graduacao*> graduacoes;
+             vector<PosGraduacao*> posGraduacoes;
+             vector<ProducaoCientifica*> producoes;
+             
+             
         public:
             Docente(int codigo, string nome, string departamento);
             string getNome();
@@ -40,7 +45,22 @@ namespace dominio
             int getNumProducoesNaoQualificadas();
             
             
-            
+            void addListaProducao(ProducaoCientifica* prod);
+
+            void addListaGraduacao(Graduacao* grad);
+
+            void addListaPosGraduacao(PosGraduacao* pg);
+
+            void addListaDidaticoAula(DidaticoAula* disc);
+
+            vector<DidaticoAula*> getDisciplinas();
+
+            vector<Graduacao*> getGraduacoes();
+
+            vector<PosGraduacao*> getPosGraduacoes();
+
+            vector<ProducaoCientifica*> getProducoes();
+
             
         
     };

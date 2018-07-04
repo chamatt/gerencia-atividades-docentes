@@ -51,7 +51,7 @@ namespace utilitarios {
 
             virtual ~LeituraCSV();
 
-            map<int, Docente> leDocentes();
+            map<int, Docente*> leDocentes();
 
             map<long, Discente> leDiscentes();
 

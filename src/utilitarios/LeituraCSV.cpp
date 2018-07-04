@@ -16,6 +16,7 @@
 #include "../professor/NumberUtils.h"
 #include "../professor/StringUtils.h"
 #include "../dominio/Orientacao.h"
+#include <fstream>
 
 using namespace std;
 using namespace excecoes;
@@ -36,15 +37,11 @@ namespace utilitarios {
 	vector<string> LeituraCSV::leLinha(ifstream& sc) {
 		string linha;
                 getline(sc, linha);
-                
 		Tokenizer tok(linha, ';');
-                
                 vector<string> propriedades = tok.remaining();
-                
 		for(int i = 0; i < (int) propriedades.size(); i++) {
                     propriedades[i] = trim(propriedades[i]);
 		}
-		
 		return propriedades;
 	}
 
@@ -125,166 +122,332 @@ namespace utilitarios {
                 throw DataIngressoFuturaException(nome, pg->getDataDeIngresso());
             }
 	}
-        /*
-	map<Docente> leDocentes() throws FileNotFoundException, IOException, CodigoDocenteRepetidoException {
+        
+	map<int, Docente*> LeituraCSV::leDocentes() {
+        //throws (FileNotFoundException, IOException, CodigoDocenteRepetidoException) {
 
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getDocentes()));) {
-			scanner.nextLine();
-			map<Docente> docentes = new Arraymap<Docente>();
-			while (scanner.hasNextLine()) {
+            ifstream stream(arquivos.getDocentes());
+            
+            if (stream.is_open()) {
+                map<int, Docente*> docentes;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    int codigo;
+                    try {
+                        codigo = stoi(propriedades[0]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    string nome = propriedades[1];
+                    string departamento = propriedades[2];
 
-				vector<string> propriedades = leLinha(scanner);
+                    Docente* docente = new Docente(codigo, nome, departamento);
+                    checaCodigoDocenteRepetido(docentes, docente);
+                    docentes[codigo] = docente;
+                }
+                stream.close();
+                return docentes;
+            }
+            else {  
+                throw IOException();
+            }
+	}
+        
+        
+        
+        
+        
+        
+        
+        
 
-				int codigo = Integer.parseInt(propriedades[0]);
-				string nome = propriedades[1];
-				string departamento = propriedades[2];
+        
+        
+	map<long, Discente> LeituraCSV::leDiscentes(){
+        //throws FileNotFoundException, IOException, MatriculaDiscenteRepetidaException {
+            ifstream stream(arquivos.getDiscentes());
+            
+            if (stream.is_open()) {
+                map<int, Discente*> discentes;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    long matricula;
+                    int codigoCurso;
+                    try {
+                        matricula = (long) stoi(propriedades[0]);
+                        codigoCurso = stoi(propriedades[2]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    string nome = propriedades[1];
 
-				Docente docente = new Docente(codigo, nome, departamento);
-				checaCodigoDocenteRepetido(docentes, docente);
-				docentes.add(docente);
-
-			}
-			return docentes;
-		}
+                    Discente* discente = new Discente(matricula, nome, codigoCurso);
+                    checaMatriculaDiscenteRepetida(discentes, discente);
+                    discentes[matricula] = discente;
+                }
+                stream.close();
+                return discentes;
+            }
+            else {  
+                throw IOException();
+            }
 
 	}
 
-	map<Discente> leDiscentes() throws FileNotFoundException, IOException, MatriculaDiscenteRepetidaException {
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getDiscentes()))) {
-			scanner.nextLine();
-			map<Discente> discentes = new Arraymap<Discente>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
-
-				long matricula = Integer.parseInt(propriedades[0]);
-				string nome = propriedades[1];
-				int codigoCurso = Integer.parseInt(propriedades[2]);
-
-				Discente discente = new Discente(matricula, nome, codigoCurso);
-				checaMatriculaDiscenteRepetida(discentes, discente);
-				discentes.add(discente);
-			}
-			return discentes;
-		}
-
-	}
-
-	map<ProducaoCientifica> leProducoesCientificas(map<Docente> docentes)
-			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getProducaoCientifica()));) {
-			scanner.nextLine();
-			map<ProducaoCientifica> producoesCientificas = new Arraymap<ProducaoCientifica>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
-
-				int codigoDocente = Integer.parseInt(propriedades[0]);
-				string tituloDaPublicacao = propriedades[1];
-				bool qualificada = (propriedades.length > 2 && propriedades[2].equals("X")) ? true : false;
-
-				ProducaoCientifica producaoCientifica = new ProducaoCientifica(codigoDocente, tituloDaPublicacao,
+        
+        
+	map<int, ProducaoCientifica> LeituraCSV::leProducoesCientificas(map<int, Docente> docentes){
+//			throws FileNotFoundException, IOException, CodigoDocenteEmPublicacaoInvalidoException {
+		
+            
+            ifstream stream(arquivos.getProducaoCientifica());
+            if (stream.is_open()) {
+                map<int, ProducaoCientifica*> producoesCientificas;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    
+                    int codigoDocente;
+                    try {
+                        codigoDocente = stoi(propriedades[0]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    
+                    string tituloDaPublicacao = propriedades[1];
+                    bool qualificada = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
+                    
+                    ProducaoCientifica* producaoCientifica = new ProducaoCientifica(codigoDocente, tituloDaPublicacao,
 						qualificada);
-				checaDocenteEmProducaoCientifica(docentes, producaoCientifica);
-				producoesCientificas.add(producaoCientifica);
-			}
-			return producoesCientificas;
-		}
+                    checaDocenteEmProducaoCientifica(docentes, producaoCientifica);
+                    producoesCientificas[codigoDocente] = producaoCientifica;
+                }
+                stream.close();
+                return producoesCientificas;
+            }
+            else {  
+                throw IOException();
+            }
 
 	}
 
-	map<Curso> leCursos()
-			throws FileNotFoundException, IOException, CodigoCursoRepetidoException, NivelCursoInconsistenteException {
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getCursos()));) {
-			scanner.nextLine();
-
-			map<Curso> cursos = new Arraymap<Curso>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
-				int codigo = Integer.parseInt(propriedades[0]);
-				string nome = propriedades[1];
-				bool graduacao = (propriedades.length > 2 && propriedades[2].equals("X")) ? true : false;
-				bool posGraduacao = (propriedades.length > 3 && propriedades[3].equals("X")) ? true : false;
-
-				Curso curso = new Curso(codigo, nome, graduacao);
-				checaCodigoCursoRepetido(cursos, curso);
-				checaCurso(curso, posGraduacao);
-				cursos.add(curso);
-			}
-			return cursos;
-		}
-
-	}
-
-	map<DidaticoAula> leDidaticoAulas(map<Docente> docentes, map<Curso> cursos){
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getDidaticoAulas()));) {
-			scanner.nextLine();
-			map<DidaticoAula> didaticoAulas = new Arraymap<DidaticoAula>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
-
-				string codigo = propriedades[0];
-				string nome = propriedades[1];
-				int codigoDocente = Integer.parseInt(propriedades[2]);
-				int cargaSemanal = Integer.parseInt(propriedades[3]);
-				int cargaSemestral = Integer.parseInt(propriedades[4]);
-				int codigoCurso = Integer.parseInt(propriedades[5]);
-
-				DidaticoAula didaticoAula = new DidaticoAula(codigo, nome, codigoDocente, cargaSemanal, cargaSemestral,
-						codigoCurso);
-				checaCodigoDisciplinaRepetido(didaticoAulas, didaticoAula);
-				checaDocenteInvalidoEmDisciplina(didaticoAula, docentes);
-				checaCursoEmDisciplina(cursos, didaticoAula);
-				didaticoAulas.add(didaticoAula);
-			}
-			return didaticoAulas;
-		}
+        
+        
+	map<int, Curso> LeituraCSV::leCursos(){
+//			throws FileNotFoundException, IOException, CodigoCursoRepetidoException, NivelCursoInconsistenteException {
+		
+            
+            
+            ifstream stream(arquivos.getCursos());
+            
+            if (stream.is_open()) {
+                map<int, Curso*> cursos;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    
+                    int codigo;
+                    try {
+                        codigo = stoi(propriedades[0]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    string nome = propriedades[1];
+                    bool graduacao = (propriedades.size() > 2 && propriedades[2].equals("X")) ? true : false;
+                    bool posGraduacao = (propriedades.size() > 3 && propriedades[3].equals("X")) ? true : false;
+                    
+                    Curso* curso = new Curso(codigo, nome, graduacao);
+                    checaCodigoCursoRepetido(cursos, curso);
+                    checaCurso(curso, posGraduacao);
+                    cursos[codigo] = curso;
+                    
+                    
+                    // Conexao com docentes
+                    
+                    
+                    
+                }
+                stream.close();
+                return cursos;
+            }
+            else {  
+                throw IOException();
+            }
 
 	}
 
-	map<Graduacao> leGraduacoes(map<Docente> docentes, map<Discente> discentes, map<Curso> cursos) {
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getOrientacaoGraducao()));) {
-			scanner.nextLine();
-			map<Graduacao> graduacoes = new Arraymap<Graduacao>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
+        
+	map<DidaticoAula> LeituraCSV::leDidaticoAulas(map<int, Docente*> &docentes, map<int, Curso*> &cursos){
+		
+            
+            
+            ifstream stream(arquivos.getDidaticoAulas());
+            
+            if (stream.is_open()) {
+                map<string, DidaticoAula*> didaticoAulas;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    
+                    int codigoDocente;
+                    int cargaSemanal;
+                    int cargaSemestral;
+                    int codigoCurso;
+                    try {
+                        codigoDocente = stoi(propriedades[2]);
+                        cargaSemanal = stoi(propriedades[3]);
+                        cargaSemestral = stoi(propriedades[4]);
+                        codigoCurso = stoi(propriedades[5]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    string codigo = propriedades[0];
+                    string nome = propriedades[1];
+                    
+                    
+                    // Instancia uma aula e adiciona no mapa de aulas
+                    DidaticoAula* didaticoAula = new DidaticoAula(codigo, nome, docentes[codigoDocente], cargaSemanal, cargaSemestral,
+                                    cursos[codigoCurso]);
+                    checaCodigoDisciplinaRepetido(didaticoAulas, didaticoAula);
+                    checaDocenteInvalidoEmDisciplina(didaticoAula, docentes);
+                    checaCursoEmDisciplina(cursos, didaticoAula);
+                    didaticoAulas[codigo] = didaticoAula;
+                            
+                            
+                    //Conexao com docente
+                    docentes[codigoDocente]->addListaDidaticoAula(didaticoAula);
+                    
+                    // Conexao com curso (adicionar na lista de docentes do curso)
+                    cursos[codigoCurso]->addListaDocentes(docentes[codigoDocente]);
+                            
+                }
+                stream.close();
+                return didaticoAulas;
+            }
+            else {  
+                throw IOException();
+            }
+            
+	}
 
-				int codigoDocente = Integer.parseInt(propriedades[0]);
-				int matriculaDiscente = Integer.parseInt(propriedades[1]);
-				int codigoCurso = Integer.parseInt(propriedades[2]);
-				int cargaSemanal = Integer.parseInt(propriedades[3]);
+        
+        
+	map<Graduacao> LeituraCSV::leGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes, map<int, Curso*> &cursos) {
+		
+            ifstream stream(arquivos.getOrientacaoGraducao());
+            
+            if (stream.is_open()) {
+                map<int, Graduacao*> graduacoes;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    
+                    int codigoDocente;
+                    int matriculaDiscente;
+                    int codigoCurso;
+                    int cargaSemanal;
+                    
+                    try {
+                        codigoDocente = stoi(propriedades[0]);
+                        matriculaDiscente = stoi(propriedades[1]);
+                        codigoCurso = stoi(propriedades[2]);
+                        cargaSemanal = stoi(propriedades[3]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
 
-				Graduacao graduacao = new Graduacao(codigoDocente, matriculaDiscente, codigoCurso, cargaSemanal);
-				checaDocenteEmOrientacao(docentes, discentes, graduacao);
-				checaCursoEmOrientacao(cursos, discentes, graduacao);
-				graduacoes.add(graduacao);
-			}
-			return graduacoes;
-		}
+                    
+                    // Instancia a graduacao com suas propriedades e adiciona ao mapa de graduacoes
+                    Graduacao* graduacao = new Graduacao(docentes[codigoDocente], discentes[matriculaDiscente], cursos[codigoCurso], cargaSemanal);
+                    checaDocenteEmOrientacao(docentes, discentes, graduacao);
+                    checaCursoEmOrientacao(cursos, discentes, graduacao);
+                    graduacoes[matriculaDiscente] = graduacao;
+                    
+                    // Conexao com Docente
+                    docentes[codigoDocente]->addListaGraduacao(graduacao);
+                    
+                    // Conexao com Discente
+                    discentes[matriculaDiscente]->setGraduacao(graduacao);
+                    
+                    // Conexao com Curso - Nao necessário, o curso sabe sua graduacao na hora da leitura
+                    
+                }
+                stream.close();
+                return graduacoes;
+            }
+            else {  
+                throw IOException();
+            }
+            
+          
 
 	}
 
-	map<PosGraduacao> lePosGraduacoes(map<Docente> docentes, map<Discente> discentes){
-		try (Scanner scanner = new Scanner(new FileReader(arquivos.getOrientacaoPos()));) {
-			scanner.nextLine();
-			map<PosGraduacao> posGraduacoes = new Arraymap<PosGraduacao>();
-			while (scanner.hasNextLine()) {
-				vector<string> propriedades = leLinha(scanner);
-
-				int codigoDocente = Integer.parseInt(propriedades[0]);
-				int matriculaDiscente = Integer.parseInt(propriedades[1]);
-				string sDate = propriedades[2];
-				Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
-				string programa = propriedades[3];
-				int cargaSemanal = Integer.parseInt(propriedades[4]);
-
-				PosGraduacao posGraduacao = new PosGraduacao(codigoDocente, matriculaDiscente, date, programa,
-						cargaSemanal);
-				checaDocenteEmOrientacao(docentes, discentes, posGraduacao);
-				checaData(discentes, posGraduacao);
-				posGraduacoes.add(posGraduacao);
-			}
-			return posGraduacoes;
-		}
-
-	}*/
+        
+        
+	map<PosGraduacao> LeituraCSV::lePosGraduacoes(map<int, Docente*>& docentes, map<long, Discente*>& discentes){
+		
+            
+            ifstream stream(arquivos.getOrientacaoPos());
+            
+            if (stream.is_open()) {
+                map<int, PosGraduacao*> posGraduacoes;
+                string descartavel;
+                getline(stream, descartavel);
+                while (stream.good())
+                {
+                    vector<string> propriedades = leLinha(stream);
+                    
+                    int codigoDocente;
+                    int matriculaDiscente;
+                    int cargaSemanal;
+                    
+                    try {
+                        codigoDocente = stoi(propriedades[0]);
+                        matriculaDiscente = stoi(propriedades[1]);
+                        cargaSemanal = stoi(propriedades[4]);
+                    } catch(exception e){
+                        throw ParseException();
+                    }
+                    string date = propriedades[2];
+                    string programa = propriedades[3];
+                    
+                    
+                    //Instanciamento da posGraduacao nova e logo em seguida é adicionada no mapa
+                    PosGraduacao* posGraduacao = new PosGraduacao(docentes[codigoDocente], discentes[matriculaDiscente], date, programa,
+                                    cargaSemanal);
+                    checaDocenteEmOrientacao(docentes, discentes, posGraduacao);
+                    checaData(discentes, posGraduacao);
+                    posGraduacoes[matriculaDiscente] = posGraduacao;
+                    
+                    
+                    //Conexoes com docente
+                    docentes[codigoDocente]->addListaPosGraduacao(posGraduacao);
+                    
+                    //Conexao com discente
+                    discentes[matriculaDiscente]->setPosGraduacao(posGraduacao);
+                    
+                }
+                stream.close();
+                return posGraduacoes;
+            }
+            else {  
+                throw IOException();
+            }
+	}
 }
 
