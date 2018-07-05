@@ -48,11 +48,11 @@ int main(int argc, char** argv) {
             posGraduacoes = leitor->lePosGraduacoes(docentes, discentes);
           
             // Faz as escritas dos arquivos CSV
-            EscritaCSV* escritor = new EscritaCSV();
-            escritor->escrevePAD(docentes);
-            escritor->escreveAlocacao(didaticoAulas);
-            escritor->escreveDiscentesProGrad(discentes);
-            escritor->escreveRHA(cursos);
+           EscritaCSV* escritor = new EscritaCSV();
+           escritor->escrevePAD(docentes);
+           escritor->escreveAlocacao(didaticoAulas);
+           escritor->escreveDiscentesProGrad(discentes);
+           escritor->escreveRHA(cursos);
         } catch (IOException e) {
             cout << e.what();
         } catch (ParseException p) {

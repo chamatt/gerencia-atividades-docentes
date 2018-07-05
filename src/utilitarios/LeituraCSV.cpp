@@ -1,5 +1,6 @@
 #include "LeituraCSV.h"
-
+#include <iostream>
+#include <cstdio>
 namespace utilitarios {
     
     
@@ -119,6 +120,8 @@ namespace utilitarios {
                     }
                     string nome = propriedades[1];
                     string departamento = propriedades[2];
+                    
+                    //cout << codigo << " " << nome << " " << departamento << endl;
 
                     checaCodigoDocenteRepetido(docentes, codigo);
                     
@@ -155,11 +158,13 @@ namespace utilitarios {
                         throw ParseException();
                     }
                     string nome = propriedades[1];
+                    //cout << matricula << " " << nome << " " << codigoCurso << endl;
+                    
                     codigoCurso++;
                     checaMatriculaDiscenteRepetida(discentes, matricula);
                     
                     Discente* discente = new Discente(matricula, nome);
-                    
+                    discente->setPosGraduacao(NULL);
                     discentes[matricula] = discente;
                 }
                 stream.close();
@@ -198,6 +203,7 @@ namespace utilitarios {
                     string tituloDaPublicacao = propriedades[1];
                     bool qualificada = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
                     
+                    //cout << codigoDocente << " " << tituloDaPublicacao << " " << qualificada << endl;
                     
                     checaDocenteEmProducaoCientifica(docentes, codigoDocente, tituloDaPublicacao);
                     
@@ -250,6 +256,8 @@ namespace utilitarios {
                     bool graduacao = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
                     //bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
                     
+                    //cout << codigo << " " << nome << " " << graduacao << endl;
+                    
                     checaCodigoCursoRepetido(cursos, codigo);
                     
                     Curso* curso = new Curso(codigo, nome, graduacao);
@@ -285,7 +293,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    
+                    if(propriedades[0].size() == 0) break;
                     int codigoDocente;
                     int cargaSemanal;
                     int cargaSemestral;
@@ -301,8 +309,10 @@ namespace utilitarios {
                     string codigo = propriedades[0];
                     string nome = propriedades[1];
                     
+                   // cout << codigo << " " << nome << " " << codigoDocente << " ";
+                   // cout << cargaSemanal << " " << cargaSemestral << " " << codigoCurso << endl;
                     
-                    //Checa as Excecoes
+                    //Checa as Excecoes 
                     checaCodigoDisciplinaRepetido(didaticoAulas, codigo);
                     checaDocenteInvalidoEmDisciplina(docentes, codigoDocente, nome);
                     checaCursoEmDisciplina(cursos, codigoCurso, nome);
@@ -343,7 +353,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    
+                    if(propriedades[0].size() == 0) break;
                     int codigoDocente;
                     int matriculaDiscente;
                     int codigoCurso;
@@ -358,7 +368,8 @@ namespace utilitarios {
                         throw ParseException();
                     }
 
-                    
+                   // cout << codigoDocente << " " << matriculaDiscente << " ";
+                    //cout << codigoCurso << " " << cargaSemanal << endl;
                     checaDocenteEmOrientacao(docentes, discentes, codigoDocente, matriculaDiscente);
                     checaCursoEmOrientacao(cursos, discentes, codigoCurso, matriculaDiscente);
                     
@@ -419,7 +430,8 @@ namespace utilitarios {
                     string date = propriedades[2];
                     string programa = propriedades[3];
                     
-                    
+                   // cout << codigoDocente << " " << matriculaDiscente << " ";
+                   // cout << date << " " << programa << " " << cargaSemanal << endl;
                     //Checa as excecoes
                     checaDocenteEmOrientacao(docentes, discentes, codigoDocente, matriculaDiscente);
                     checaData(discentes, date, matriculaDiscente);

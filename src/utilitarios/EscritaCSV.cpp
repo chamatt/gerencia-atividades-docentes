@@ -1,6 +1,6 @@
 #include "EscritaCSV.h"
 #include "../excecoes/execoes.h"
-
+#include <iostream>
 using namespace excecoes;
 
 namespace utilitarios
@@ -96,7 +96,6 @@ namespace utilitarios
                      
                      for(it = discentes.begin();it != discentes.end();it++)
                             if(it->second->getPosGraduacao() != NULL) discentePPG.push_back(it->second);
-                     
                      
                      sort(discentePPG.begin(),discentePPG.end(),PPG);
                      
