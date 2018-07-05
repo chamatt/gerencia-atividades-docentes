@@ -37,7 +37,7 @@ debug: all
 release: CXXFLAGS += -O2
 release: all
 	
-run:	program
+run:	
 	./$(APP_DIR)/$(TARGET) $(ARGS)
 
 clean:
