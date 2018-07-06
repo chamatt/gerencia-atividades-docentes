@@ -38,7 +38,7 @@ release: CXXFLAGS += -O2
 release: all
 	
 run:	
-	@$(APP_DIR)/$(TARGET) -d docentes.csv -a discentes.csv -p producoes.csv -c cursos.csv -r aulas.csv -og orientagrad.csv - op orientapos.csv
+	@$(APP_DIR)/$(TARGET) -d docentes.csv -a discentes.csv -p producoes.csv -c cursos.csv -r aulas.csv -og orientagrad.csv -op orientapos.csv
 
 clean:
 	-@rm -rvf $(OBJ_DIR)/*
