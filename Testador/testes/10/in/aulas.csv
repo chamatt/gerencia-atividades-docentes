@@ -1,0 +1,31 @@
+<código>;<nome>;<código docente>;<carga horária semanal>;<carga horaria semestral>;<código do curso>
+024;Artesanato;500;10;61;002
+022;Vender miçanga;754;10;87;003
+011;Admirar o sol;500;12;109;007
+078;Abraçar árvore;498;77;140;001
+123;Compiladores;214;60;120;005
+666;Eletromagnetismo;754;48;400;008
+754;Programação 1;500;45;487;010
+980;Programação 2;488;47;80;011
+740;Cálculo 1;498;20;107;012
+741;Cálculo 3;500;12;60;013
+485;Engenharia de software;754;87;99;014
+998;Empreendedorismo;754;17;100;015
+875;Circuitos 1;488;61;78;015
+451;Circuitos 2;488;62;80;014
+157;Cálculo 3;754;77;107;013
+587;Introdução a mecânica clássica;754;64;99;012
+484;Estatística;754;84;120;008
+002;Probabilidade;488;77;100;011
+014;Projetos hidráulicos;488;14;60;010
+017;Maquinas 1;500;22;80;010
+026;Máquinas 2;498;20;100;009
+480;Álgebra;498;47;60;008
+099;Algebra;214;96;200;007
+100;Engenharia ambiental;214;25;100;006
+999;Jogos artísticos;214;24;100;005
+989;Jardinagem 1;214;24;100;008
+665;Jardinagem 2;214;24;100;003
+667;Salto ornamental;214;24;100;002
+664;Salto com vara;214;24;100;001
+155;Surf;498;25;102;008
