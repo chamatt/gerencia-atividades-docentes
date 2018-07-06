@@ -29,8 +29,10 @@ namespace dominio
         return docentes;
     }
     void Curso::addListaDocentes(Docente* docente) {
-        if(docentes.find() == docentes.end())
-            docentes.push_back(docente);
+        for(int i = 0; i < (int) docentes.size(); i++){
+            if(docentes[i] == docente) return;
+        }
+        docentes.push_back(docente);
     }
 
 
