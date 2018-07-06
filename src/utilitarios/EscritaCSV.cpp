@@ -125,26 +125,28 @@ namespace utilitarios
                 {
                     out << "Departamento;Docente;Cód. Curso;Curso;Horas Semestrais Aula" << endl;
                     vector< vector<string> > itensRelatorio;
-                    for(auto curso : cursos){
+					vector<string> temp;
+                    for(auto &curso : cursos){
                         vector<Docente*> listaDocentes = curso.second->getListaDocentes();
-                        for(auto docente : listaDocentes){
+                        for(auto &docente : listaDocentes){
                             string nomeDoDepartamento = "";
                             string nomeDoDocente = "";
                             int totalHoras = 0;
                             string codigoDoCurso = to_string(curso.second->getCodigo());
                             string nomeDoCurso = curso.second->getNome();
-                            for(auto aula : docente->getDisciplinas()){
+                            for(auto &aula : docente->getDisciplinas()){
                                 if(aula->getCurso()->getCodigo() == curso.second->getCodigo()){
                                     totalHoras += aula->getCHSemestral();
                                     nomeDoDepartamento = aula->getDocente()->getDepartamento();
                                     nomeDoDocente = aula->getDocente()->getNome();
                                     
-                                    vector<string> temp;
+                                    temp.clear();
                                     temp.push_back(nomeDoDepartamento);
                                     temp.push_back(nomeDoDocente);
                                     temp.push_back(codigoDoCurso);
                                     temp.push_back(nomeDoCurso);
                                     temp.push_back(to_string(totalHoras));
+									
                                     itensRelatorio.push_back(temp);
                                 }
                             }
@@ -161,8 +163,7 @@ namespace utilitarios
                         out << itensRelatorio[i][1] << ";";
                         out << itensRelatorio[i][2] << ";";
                         out << itensRelatorio[i][3] << ";";
-                        out << itensRelatorio[i][4] << ";";
-                        out << itensRelatorio[i][5] << ";" << endl;
+                        out << itensRelatorio[i][4] << endl;
                     }
                     out.close();
                     

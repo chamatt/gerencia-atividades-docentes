@@ -25,7 +25,6 @@ using namespace excecoes;
  * 
  */
 int main(int argc, char** argv) {
-        
         try{
             Arquivos arquivos(argc, argv);
             map<int, Docente*> docentes; // Codigo do docente -> Docente

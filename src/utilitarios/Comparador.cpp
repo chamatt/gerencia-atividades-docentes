@@ -1,4 +1,5 @@
 #include "Comparador.h"
+#include <iostream>
 
 
 namespace utilitarios {
@@ -47,9 +48,8 @@ namespace utilitarios {
             return value < 0;
         }
 
-        bool Comparador::RHA(vector<string> s1, vector<string> s2){
+        bool Comparador::RHA(vector<string> &s1, vector<string> &s2){
             int value = stringCompare(s1[0],s2[0]);
-
             if(value == 0)
             {
                 int value2 = stringCompare(s1[1],s2[1]);
@@ -64,6 +64,7 @@ namespace utilitarios {
             }
 
             return value < 0;
+			return false;
         }
 }
 
