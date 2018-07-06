@@ -58,7 +58,7 @@ namespace utilitarios {
 
 		string nome = discentes[matriculaDoDiscente]->getNome();;
 
-		throw CodigoDocenteEmOrientacaoInvalidoException(nome, matriculaDoDiscente);
+		throw CodigoDocenteEmOrientacaoInvalidoException(nome, codigoDoDocente);
 	}
 
 	void LeituraCSV::checaDocenteEmProducaoCientifica(map<int, Docente*> &docentes, int codigoDoDocente, string tituloDaProducao){

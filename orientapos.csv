@@ -1,20 +1,17 @@
 <código do docente>;<matricula do discente>;<data de ingresso do discente no programa>;<programa de pós graduação>;<carga horária semanal>
-003;2016101010;02/02/2016;Mestrado em Geografia;5
-003;2016101011;02/05/2016;Mestrado em Educação Física;4
-004;2016101012;05/07/2016;Mestrado em Física;5
-004;2016101013;04/01/2016;Mestrado em Matemática;2
-004;2016101014;03/03/2016;Mestrado em Química;1
-004;2016101015;05/04/2017;Mestrado em Engenharia da Computação;6
-005;2016101016;08/05/2017;Mestrado em Engenharia Elétrica;6
-005;2016101017;09/07/2016;Mestrado em Administração;5
-005;2016101018;08/09/2017;Mestrado em Economia;4
-005;2016101019;04/04/2017;Mestrado em Ciências Sociais;5
-004;2016101021;16/02/2017;Mestrado em Georgafia;5
-004;2016101022;15/01/2017;Mestrado em Educação Física;4
-003;2016101023;08/08/2017;Mestrado em Física;5
-003;2016101024;06/06/2017;Mestrado em Matemática;2
-003;2016101025;09/07/2017;Mestrado em Química;1
-003;2016101026;08/02/2017;Mestrado em Engenharia da Computação;6
-004;2016101027;04/09/2017;Mestrado em Engenharia Elétrica;6
-004;2016101028;05/06/2017;Mestrado em Administração;5
-003;2016101029;04/04/2017;Mestrado em Direito;4
+10001;2031;05/01/2011;Mestrado a;5
+10002;2032;05/04/2016;Mestrado b;10
+10003;2033;05/02/2013;Mestrado c;20
+10004;2034;01/05/2012;Mestrado d;5
+10005;2035;01/06/2014;Mestrado e;10
+10006;2036;01/07/2012;Mestrado f;20
+10007;2037;05/02/2016;Mestrado g;5
+10008;2038;05/03/2014;Mestrado h;10
+10009;2039;05/08/2013;Mestrado i;20
+10010;2040;10/09/2015;Mestrado j;5
+10006;2050;01/07/2012;Mestrado k;20
+10007;2041;05/02/2016;Mestrado g;5
+10008;2042;05/03/2014;Mestrado h;10
+10009;2045;05/08/2013;Mestrado i;20
+10010;2046;10/09/2015;Mestrado j;5
+10010;2048;10/09/2015;Mestrado j;5
