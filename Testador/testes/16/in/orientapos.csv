@@ -1,0 +1,17 @@
+<código do docente>;<matricula do discente>;<data de ingresso do discente no programa>;<programa de pós graduação>;<carga horária semanal>
+10001;2031;05/01/2011;Mestrado a;5
+10002;2032;05/04/2016;Mestrado b;10
+10003;2033;05/02/2013;Mestrado c;20
+10004;2034;01/05/2012;Mestrado d;5
+10005;2035;01/06/2014;Mestrado e;10
+10006;2036;01/07/2012;Mestrado f;20
+10007;2037;05/02/2016;Mestrado g;5
+10008;2038;05/03/2014;Mestrado h;10
+10009;2039;05/08/2013;Mestrado i;20
+10010;2040;10/09/2015;Mestrado j;5
+10006;2050;01/07/2012;Mestrado k;20
+10007;2041;05/02/2016;Mestrado g;5
+10008;2042;05/03/2014;Mestrado h;10
+10009;2045;05/08/2013;Mestrado i;20
+10010;2046;10/09/2015;Mestrado j;5
+10010;2048;10/09/2015;Mestrado j;5

@@ -1,0 +1,31 @@
+Departamento;Docente;Cód. Curso;Curso;Horas Semestrais Aula
+Departamento A;Joseph Joestar;503;Agroquímica;60
+Departamento A;Joseph Joestar;501;Engenharia de Produção;45
+Departamento A;Joseph Joestar;502;Publicidade e Propaganda;75
+Departamento B;Paul Walker;503;Agroquímica;75
+Departamento B;Paul Walker;501;Engenharia de Produção;60
+Departamento B;Paul Walker;502;Publicidade e Propaganda;45
+Departamento C;Steven Spielberg;506;Agricultura Tropical;60
+Departamento C;Steven Spielberg;504;Gemologia;45
+Departamento C;Steven Spielberg;505;Produção Vegetal;75
+Departamento D;Jotaro Kujo;506;Agricultura Tropical;75
+Departamento D;Jotaro Kujo;504;Gemologia;60
+Departamento D;Jotaro Kujo;505;Produção Vegetal;45
+Departamento E;Terry Crews;508;Design;75
+Departamento E;Terry Crews;509;Genética e Melhoramentos;60
+Departamento E;Terry Crews;507;Tecnologia em Manutenção Industrial;45
+Departamento F;Stephen Curry;508;Design;45
+Departamento F;Stephen Curry;509;Genética e Melhoramentos;75
+Departamento F;Stephen Curry;507;Tecnologia em Manutenção Industrial;60
+Departamento G;Mark Zuckerberg;510;Biblioteconomia;45
+Departamento G;Mark Zuckerberg;512;Biotecnologia;60
+Departamento G;Mark Zuckerberg;511;Ciências Contábeis;75
+Departamento H;George Clooney;510;Biblioteconomia;60
+Departamento H;George Clooney;512;Biotecnologia;75
+Departamento H;George Clooney;511;Ciências Contábeis;45
+Departamento I;Oprah Winfrey;514;Engenharia Mecânica;75
+Departamento I;Oprah Winfrey;513;Música;45
+Departamento I;Oprah Winfrey;515;Psicologia;60
+Departamento J;Gabriel Toledo;514;Engenharia Mecânica;45
+Departamento J;Gabriel Toledo;513;Música;60
+Departamento J;Gabriel Toledo;515;Psicologia;75

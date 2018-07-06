@@ -1,0 +1,32 @@
+<Código do Curso>;<Nome do Curso>;<Graduação?>;<Pós-graduação?>
+001;Normal/Normal;X;
+066;Grass/Poison; ;X
+172;Fire/Fire;X; 
+191;Water/Water;X;
+115;Bug/Bug;X; 
+061;Bug/Poison;;X
+037;Normal/Flying;;X
+058;Poison/Poison;X;
+229;Electric/Electric;X;
+077;Ground/Ground;X; 
+324;Fairy/Fairy;X;
+307;Normal/Fairy;;X
+040;Poison/Flying;;X
+205;Bug/Grass; ;X
+020;Fighting/Fighting;X; 
+248;Psychic/Psychic;X;
+065;Water/Poison;;X
+078;Rock/Ground; ;X
+245;Water/Psychic;;X
+157;Elecric/Steel;;X
+062;Ghost/Poison; ;X
+246;Grass/Psychic;;X
+095;Ground/Rock;;X
+210;Grass/Grass;X; 
+320;Psychic/Fairy; ;X
+043;Bug/Flying; ;X
+249;Ice/Psychic;;X
+263;Water/Ice;;X
+186;Rock/Water; ;X
+042;Rock/Flying; ;X
+286;Dragon/Dragon;X; 
