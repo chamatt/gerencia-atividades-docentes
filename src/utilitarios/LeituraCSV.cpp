@@ -112,6 +112,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
+                    if(propriedades.size() <= 1) break;
                     int codigo;
                     try {
                         codigo = stoi(propriedades[0]);
@@ -192,7 +193,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    
+                    if(propriedades.size() <= 1) break;
                     int codigoDocente;
                     try {
                         codigoDocente = stoi(propriedades[0]);
@@ -245,7 +246,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    
+                    if(propriedades.size() <= 1) break;
                     int codigo;
                     try {
                         codigo = stoi(propriedades[0]);
@@ -293,7 +294,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    if(propriedades[0].size() == 0) break;
+                    if(propriedades.size() <= 1) break;
                     int codigoDocente;
                     int cargaSemanal;
                     int cargaSemestral;
@@ -353,7 +354,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    if(propriedades[0].size() == 0) break;
+                    if(propriedades.size() <= 1) break;
                     int codigoDocente;
                     int matriculaDiscente;
                     int codigoCurso;
@@ -415,7 +416,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
-                    
+                    if(propriedades.size() <= 1) break;
                     int codigoDocente;
                     long matriculaDiscente;
                     int cargaSemanal;
