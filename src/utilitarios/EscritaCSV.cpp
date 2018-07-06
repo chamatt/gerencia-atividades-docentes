@@ -139,17 +139,16 @@ namespace utilitarios
                                     totalHoras += aula->getCHSemestral();
                                     nomeDoDepartamento = aula->getDocente()->getDepartamento();
                                     nomeDoDocente = aula->getDocente()->getNome();
-                                    
-                                    temp.clear();
-                                    temp.push_back(nomeDoDepartamento);
-                                    temp.push_back(nomeDoDocente);
-                                    temp.push_back(codigoDoCurso);
-                                    temp.push_back(nomeDoCurso);
-                                    temp.push_back(to_string(totalHoras));
-									
-                                    itensRelatorio.push_back(temp);
                                 }
                             }
+                            temp.clear();
+                            temp.push_back(nomeDoDepartamento);
+                            temp.push_back(nomeDoDocente);
+                            temp.push_back(codigoDoCurso);
+                            temp.push_back(nomeDoCurso);
+                            temp.push_back(to_string(totalHoras));
+
+                            itensRelatorio.push_back(temp);
                             
                         }
                     }
