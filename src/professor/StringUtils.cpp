@@ -30,7 +30,8 @@ string& trim(string& s) {
 }
 
 int stringCompare(string s1, string s2) {
-	   const collate<char>& col = use_facet<collate<char> >(locale());
+           locale pt_BR("pt_BR.utf8");
+	   const collate<char>& col = use_facet<collate<char> >(locale(pt_BR));
 	   transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
 	   transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
 	   const char* pb1 = s1.data();

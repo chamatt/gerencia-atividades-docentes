@@ -150,6 +150,7 @@ namespace utilitarios {
                 while (stream.good())
                 {
                     vector<string> propriedades = leLinha(stream);
+                    if(propriedades.size() <= 1) break;
                     long matricula;
                     int codigoCurso;
                     try {
