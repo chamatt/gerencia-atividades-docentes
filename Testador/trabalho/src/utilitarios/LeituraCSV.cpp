@@ -86,7 +86,7 @@ namespace utilitarios {
 			throw NivelCursoInconsistenteException(curso->getNome(), curso->getCodigo());
 	}
 
-	void LeituraCSV::checaData(map<long, Discente*> discentes, string dataDeIngresso, long matriculaDoDiscente){
+	void LeituraCSV::checaData(map<long, Discente*> &discentes, string dataDeIngresso, long matriculaDoDiscente){
             time_t now = time(0);
             string dataAtual =  formatDate(now, DATE_FORMAT_PT_BR_SHORT);
             string nome = "";

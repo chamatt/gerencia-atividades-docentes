@@ -52,32 +52,56 @@ int main(int argc, char** argv) {
            escritor->escreveAlocacao(didaticoAulas);
            escritor->escreveDiscentesProGrad(discentes);
            escritor->escreveRHA(cursos);
+           
+           for(auto &docente: docentes){
+           		delete docente.second;
+           }
+           for(auto &discente: discentes){
+           		delete discente.second;
+           }
+           for(auto &prodsci: producoesCientificas){
+           		delete prodsci.second;
+           }
+           for(auto &curso: cursos){
+           		delete curso.second;
+           }
+           for(auto &aula: didaticoAulas){
+           		delete aula.second;
+           }
+           for(auto &graduacao: graduacoes){
+           		delete graduacao.second;
+           }
+           for(auto &posGraduacao: posGraduacoes){
+           		delete posGraduacao.second;
+           }
+           delete leitor;
+           delete escritor;
         } catch (IOException e) {
-            cout << e.what();
+            cout << e.what() << endl;
         } catch (ParseException p) {
-            cout << p.what();
+            cout << p.what() << endl;
         } catch (CodigoDocenteRepetidoException cd) {
-            cout << cd.what();
+            cout << cd.what() << endl;
         } catch (MatriculaDiscenteRepetidaException md) {
-            cout << md.what();
+            cout << md.what() << endl;
         } catch (CodigoCursoRepetidoException cr) {
-            cout << cr.what();
+            cout << cr.what() << endl;
         } catch (CodigoDisciplinaRepetidoException cdr) {
-            cout << cdr.what();
+            cout << cdr.what() << endl;
         } catch (CodigoDocenteEmDisciplinaInvalidoException cdi) {
-            cout << cdi.what();
+            cout << cdi.what() << endl;
         } catch (CodigoDocenteEmOrientacaoInvalidoException oi) {
-            cout << oi.what();
+            cout << oi.what() << endl;
         } catch (CodigoDocenteEmPublicacaoInvalidoException pi) {
-            cout << pi.what();
+            cout << pi.what() << endl;
         } catch (CodigoCursoEmOrientacaoInvalidoException ci) {
-            cout << ci.what();
+            cout << ci.what() << endl;
         } catch (CodigoCursoEmDisciplinaInvalidoException di) {
-            cout << di.what();
+            cout << di.what() << endl;
         } catch (NivelCursoInconsistenteException ni) {
-            cout << ni.what();
+            cout << ni.what() << endl;
         } catch (DataIngressoFuturaException df) {
-            cout << df.what();
+            cout << df.what() << endl;
         }
     
     

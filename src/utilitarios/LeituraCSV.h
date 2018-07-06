@@ -46,7 +46,7 @@ namespace utilitarios {
             void checaCursoEmOrientacao(map<int, Curso*> &cursos, map<long, Discente*> &discentes, int codigoDoCurso, long matriculaDoDiscente);
             void checaCursoEmDisciplina(map<int, Curso*> &cursos, int codigoDoCurso, string nomeDaDisciplina);
             void checaCurso(Curso* curso, bool pg);
-            void checaData(map<long, Discente*> discentes, string dataDeIngresso, long matriculaDoDiscente);
+            void checaData(map<long, Discente*> &discentes, string dataDeIngresso, long matriculaDoDiscente);
 
     public:
             LeituraCSV(Arquivos& arquivos);
