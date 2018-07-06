@@ -256,13 +256,15 @@ namespace utilitarios {
                     }
                     string nome = propriedades[1];
                     bool graduacao = (propriedades.size() > 2 && propriedades[2] == "X") ? true : false;
-                    //bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
+                    bool posGraduacao = (propriedades.size() > 3 && propriedades[3] == "X") ? true : false;
                     
                     //cout << codigo << " " << nome << " " << graduacao << endl;
                     
                     checaCodigoCursoRepetido(cursos, codigo);
                     
                     Curso* curso = new Curso(codigo, nome, graduacao);
+                    checaCurso(curso,posGraduacao);
+                    
                     cursos[codigo] = curso;
                     
                     

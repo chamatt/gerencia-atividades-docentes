@@ -1,12 +1,16 @@
 <código do curso>;<nome do curso>;<graduação?>;<pós-graduação?>
-001;Ciência da Computação;X; 
-002;Arquitetura;X; 
-003;Engenharia Civil;X; 
-004;Direito;X;
-005;Engenharia de Software;;X
-006;Admnistração Portuária;;X
-007;Urbanismo;;X
-008;Engenharia Ambiental;X; 
-009;Oceanografia;X; 
-010;Engenharia dos Materiais;;X
-011;Contabilidade;X; 
+451;Educação Física;;X
+452;Física;;
+453;Matemática;;X
+454;Química;;X
+455;Engenharia da Computação;;X
+456;Engenharia Elétrica;;X
+457;Administração;;X
+458;Economia;;X
+459;Ciências Sociais;;X
+460;História;X;
+461;Geografia;;X
+462;Direito;;X
+463;Filosofia;X;
+464;Pedagogia;X;
+465;Teologia;X;
